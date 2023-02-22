@@ -2,19 +2,35 @@
 
 namespace App\Controller;
 
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    private EventRepository $repo;
+    public function __construct(EventRepository $repo)
+    {
+      $this->repo = $repo;
+    }
     /**
      * @Route("/", name="homePage")
      */
-    public function homePageAction(): Response
+    public function readAllAction(): Response
     {
-        return $this->render('home.html.twig');
+        $event = $this->repo->findAll();
+        return $this->render('home.html.twig', [
+            'events'=>$event
+        ]);
     }
+    // /**
+    //  * @Route("/", name="homePage")
+    //  */
+    // public function homePageAction(): Response
+    // {
+    //     return $this->render('home.html.twig');
+    // }
 
     /**
      * @Route("/admin", name="adminPage")
