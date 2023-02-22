@@ -28,12 +28,12 @@
             <tbody class="table-border-bottom-0">
                 {% for c in events %}
                     <tr>
-                        <td>{{ c.id}}</td>
-                        <td>{{ c.eve_name}}</td>
-                        <td>{{ c.eve_start_day}}</td>
-                        <td>{{ c.eve_end_day}}</td>
-                        <td>{{ c.eve_detail}}</td>
-                        <td>{{ c.created|date("m/d/Y")}}</td>
+                        <td>{{ c.ID}}</td>
+                        <td>{{ c.eventName}}</td>
+                        <td>{{ c.eventStartDay|date("m/d/Y")}}</td>
+                        <td>{{ c.eventEndDay|date("m/d/Y")}}</td>
+                        <td>{{ c.eventDetail}}</td>
+                        <td>{{ c.createDay|date("m/d/Y")}}</td>
                         <td>
                         <a href="{{path('event_edit',{'id':c.id})}}">Edit</a>
                         <a href="{{path('event_delete',{'id':c.id})}}">Delete</a></td>

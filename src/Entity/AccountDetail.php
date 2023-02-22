@@ -14,7 +14,7 @@ class AccountDetail
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'accountDetail', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'accountDetail')]
     #[ORM\JoinColumn(nullable: false)]
     private ?user $user = null;
 
@@ -37,7 +37,7 @@ class AccountDetail
         return $this->user;
     }
 
-    public function setUser(user $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
