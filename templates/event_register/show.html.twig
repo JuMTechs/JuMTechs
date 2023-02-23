@@ -16,7 +16,6 @@
             <table class="table table-striped">
             <thead>
                 <tr>
-                <th>#</th>
                 <th>Event ID</th>
                 <th>Event Name</th>
                 <th>Student ID</th>
@@ -25,14 +24,14 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                {% for c in events %}
+                {% for c in eve %}
                     <tr>
                         <td>{{ c.ID}}</td>
                         <td>{{ c.eventName}}</td>
                         <td>{{ uid }}</td>
                         <td>{{ uname }}</td>
-                        {# <td>
-                        <a href="{{path('event_edit',{'id':c.id})}}">Edit</a>
+                        <td>
+                        {# <a href="{{path('event_edit',{'id':c.id})}}">Edit</a>
                         <a href="{{path('event_delete',{'id':c.id})}}">Delete</a></td> #}
                     </tr>
                 {% endfor %}

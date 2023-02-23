@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -32,6 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: AccountDetail::class)]
     private ?AccountDetail $accountDetail = null;
+
+    #[ORM\OneToMany(mappedBy: 'UserID', targetEntity: EventRegistration::class)]
+    private Collection $eventRegistrations;
+
+    public function __construct()
+    {
+        $this->eventRegistrations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +157,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->accountDetail = $accountDetail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EventRegistration>
+     */
+    public function getEventRegistrations(): Collection
+    {
+        return $this->eventRegistrations;
+    }
+
+    public function addEventRegistration(EventRegistration $eventRegistration): self
+    {
+        if (!$this->eventRegistrations->contains($eventRegistration)) {
+            $this->eventRegistrations->add($eventRegistration);
+            $eventRegistration->setUserID($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventRegistration(EventRegistration $eventRegistration): self
+    {
+        if ($this->eventRegistrations->removeElement($eventRegistration)) {
+            // set the owning side to null (unless already changed)
+            if ($eventRegistration->getUserID() === $this) {
+                $eventRegistration->setUserID(null);
+            }
+        }
 
         return $this;
     }

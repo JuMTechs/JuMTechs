@@ -37,12 +37,16 @@ class Event
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $createDay = null;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: RegistrationStore::class)]
-    private Collection $registrationStores;
+    #[ORM\OneToMany(mappedBy: 'EventID', targetEntity: EventRegistration::class)]
+    private Collection $eventRegistrations;
+
+    #[ORM\ManyToOne(inversedBy: 'host')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?eventhostinfo $host = null;
 
     public function __construct()
     {
-        $this->registrationStores = new ArrayCollection();
+        $this->eventRegistrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,33 +139,44 @@ class Event
     }
 
     /**
-     * @return Collection<int, RegistrationStore>
+     * @return Collection<int, EventRegistration>
      */
-    public function getRegistrationStores(): Collection
+    public function getEventRegistrations(): Collection
     {
-        return $this->registrationStores;
+        return $this->eventRegistrations;
     }
 
-    public function addRegistrationStore(RegistrationStore $registrationStore): self
+    public function addEventRegistration(EventRegistration $eventRegistration): self
     {
-        if (!$this->registrationStores->contains($registrationStore)) {
-            $this->registrationStores->add($registrationStore);
-            $registrationStore->setEvent($this);
+        if (!$this->eventRegistrations->contains($eventRegistration)) {
+            $this->eventRegistrations->add($eventRegistration);
+            $eventRegistration->setEventID($this);
         }
 
         return $this;
     }
 
-    public function removeRegistrationStore(RegistrationStore $registrationStore): self
+    public function removeEventRegistration(EventRegistration $eventRegistration): self
     {
-        if ($this->registrationStores->removeElement($registrationStore)) {
+        if ($this->eventRegistrations->removeElement($eventRegistration)) {
             // set the owning side to null (unless already changed)
-            if ($registrationStore->getEvent() === $this) {
-                $registrationStore->setEvent(null);
+            if ($eventRegistration->getEventID() === $this) {
+                $eventRegistration->setEventID(null);
             }
         }
 
         return $this;
     }
-    
+
+    public function getHost(): ?eventhostinfo
+    {
+        return $this->host;
+    }
+
+    public function setHost(?eventhostinfo $host): self
+    {
+        $this->host = $host;
+
+        return $this;
+    }
 }

@@ -19,6 +19,13 @@ class EventRegistration
     #[ORM\Column(length: 255)]
     private ?string $comment = null;
 
+    #[ORM\ManyToOne(inversedBy: 'eventRegistrations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?event $Event = null;
+
+    #[ORM\ManyToOne(inversedBy: 'eventRegistrations')]
+    private ?User $User = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +51,30 @@ class EventRegistration
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getEventID(): ?event
+    {
+        return $this->Event;
+    }
+
+    public function setEventID(?event $EventID): self
+    {
+        $this->Event = $EventID;
+
+        return $this;
+    }
+
+    public function getUserID(): ?user
+    {
+        return $this->User;
+    }
+
+    public function setUserID(?User $UserID): self
+    {
+        $this->User = $UserID;
 
         return $this;
     }

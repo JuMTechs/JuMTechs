@@ -24,14 +24,6 @@ class MainController extends AbstractController
             'events'=>$event
         ]);
     }
-    // /**
-    //  * @Route("/", name="homePage")
-    //  */
-    // public function homePageAction(): Response
-    // {
-    //     return $this->render('home.html.twig');
-    // }
-
     /**
      * @Route("/admin", name="adminPage")
      */

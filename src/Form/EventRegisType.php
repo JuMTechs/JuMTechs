@@ -11,6 +11,8 @@ class EventRegisType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        ->add('eventID')
+        ->add('userID')
         ->add('phonenumber')
         ->add('comment')
         ->add('save',SubmitType::class,[
