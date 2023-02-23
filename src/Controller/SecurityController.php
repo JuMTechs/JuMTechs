@@ -36,6 +36,4 @@ class SecurityController extends AbstractController
             'This method can be blank - it will be intercepted by the logout key on your firewall'
         );
     }
-
-    
 }

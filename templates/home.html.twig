@@ -47,13 +47,13 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
-          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link text-white" href="/">Home</a>
         </li>
         {# <li class="nav-item">
           <a class="nav-link" href="{{path('product_show')}}">Product</a>
         </li> #}
         <li class="nav-item active">
-          <a class="nav-link " href="{{path('app_account')}}"> Account </a>
+          <a class="nav-link text-white" href="{{path('app_account')}}"> Account </a>
         </li>
       </ul>
       <!-- Left links -->      
@@ -86,13 +86,13 @@
 <main>
 
 <div class = "container">
-  <img class = "card-img" src="/public/uploads/HomeBG.jpg" alt = "card">
+  <img class = "card-img" src="{{asset('uploads/HomeBG.jpg')}}">
   <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
   <!-- Container wrapper -->
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">EVENT DISPLAY</a>
+    <a class="navbar-brand" href="#">EVENT DISPLAY ALL</a>
 
     <!-- Toggle button -->
     <button 
@@ -123,6 +123,26 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+
+{% for a in events1 %}
+  <div class = "d-inline-block mx-2 my-2">
+    {{ a.eventName }}
+    <br>
+    {{ a.eventStartDay|date("m/d/Y") }}
+    <br>
+    {{ a.eventEndDay|date("m/d/Y") }}
+    <br>
+    {% set image = a.eventImage %}
+      <div class="container d-flex">
+      <img src="{{asset('uploads/'~image)}}" width = "10%" height = "10%"/>
+      </div>
+    <br>
+    {{ a.eventDetail }}
+    <br>
+    <button href = "#"> Register </button>
+  </div>
+{% endfor %}
+
 <!-- Navbar -->
 </div>
 <div class="container">
@@ -132,7 +152,7 @@
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">Calender display</a>
+    <a class="navbar-brand" href="#"> RECENT EVENT </a>
 
     <!-- Toggle button -->
     <button 
@@ -158,80 +178,25 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+ 
 <!-- Navbar -->
 
-<!-- display calender start -->
+<!-- display date start -->
 <div class="calender">
-      <div class="month">
-            <strong>
-                Febuary
-            </strong>
-            <strong>2020</strong>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="month mx-auto my-auto">
+      <div id="current-time">
+        <script>
+          var curDate = new Date();
+          var curDay = curDate.getDate();
+          var curYear = curDate.getFullYear();
+          var curMonth = curDate.getMonth() + 1;
+          document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
+        </script>
       </div>
-      <table>
-          <tr>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-          </tr>
-          
-          <tr>
-            <td></td>
-            <td></td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-          </tr>
-          
-          <tr>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-          </tr>
-
-          <tr>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-          </tr>
-
-          <tr>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-            <td>26</td>
-          </tr>
-
-          <tr>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td></td>
-            <td></td>
-          </tr>
-      </table>
-    </div>
+  </div>
 </div>
-<!-- display calender end-->
+<!-- display date end-->
    
 </main>
  <!--Main layout-->

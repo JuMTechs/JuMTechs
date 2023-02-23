@@ -17,8 +17,15 @@
                             
                                 <div class="col-12">
                                     <div class="form-group">
+                                        <label for="contact-info-vertical">Event ID</label>
+                                        {{ form_widget(form.eventID, {'attr':{'placeholder':'eve_start_day'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
                                         <label for="first-name-vertical">Event Name</label>
-                                        {{ form_widget(form.eve_name, {'attr':{'placeholder':'Event eve_name'}}) }}
+                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event eventName'}}) }}
                                         
                                         {# <input type="text" id="pname" class="form-control"
                                             name="Product_Name" placeholder="Product Name"
@@ -28,28 +35,28 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event start date</label>
-                                        {{ form_widget(form.eve_start_day, {'attr':{'placeholder':'eve_start_day'}}) }}
+                                        {{ form_widget(form.eventStartDay, {'attr':{'placeholder':'eve_start_day'}}) }}
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event end date</label>
-                                        {{ form_widget(form.eve_end_day, {'attr':{'placeholder':'eve_end_day'}}) }}
+                                        {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'eve_end_day'}}) }}
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="first-name-vertical">Event create day</label>
-                                        {{ form_widget(form.created, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
+                                        {{ form_widget(form.createDay, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
                                     </div>
                                 </div>
                                 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event detail</label>
-                                        {{ form_widget(form.eve_detail, {'attr':{'placeholder':'Event detail'}}) }}
+                                        {{ form_widget(form.eventDetail, {'attr':{'placeholder':'Event detail'}}) }}
                                     </div>
                                 </div>
 
@@ -61,9 +68,9 @@
                                     </div>
                                 </div>
 
-                                {{ form_widget(form.eve_img) }}
+                                {{ form_widget(form.eventImage) }}
                                     <div class="pt-3">
-                                    {% set img = form.eve_img.vars.value %}
+                                    {% set img = form.eventImage.vars.value %}
                                         {% if img %}
                                             <img src="{{asset('uploads/'~img)}}"
                                         class="w-25 shadow p-3 mb-5 bg-body rounded" />

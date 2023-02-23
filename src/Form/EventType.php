@@ -14,8 +14,9 @@ class EventType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('eve_name')
-        ->add('created',DateType::class,[
+        ->add('eventID')
+        ->add('eventName')
+        ->add('createDay',DateType::class,[
             'widget' => 'single_text','required' =>false
         ])
         ->add('file',FileType::class,[
@@ -23,13 +24,13 @@ class EventType extends AbstractType{
             'required' => false,
             'mapped' =>false
         ])
-        ->add('eve_img',HiddenType::class,[
+        ->add('eventImage',HiddenType::class,[
             'required' =>false
         ])
 
-        ->add('eve_start_day')
-        ->add('eve_end_day')
-        ->add('eve_detail')
+        ->add('eventStartDay')
+        ->add('eventEndDay')
+        ->add('eventDetail')
 
         ->add('save',SubmitType::class,[
             'label' => "Confirm"

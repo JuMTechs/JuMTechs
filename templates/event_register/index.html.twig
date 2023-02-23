@@ -1,0 +1,39 @@
+{% extends "home.html.twig" %}
+{% block title %}
+    Admin Page - Event
+{% endblock %}
+{% block body %}
+    <div className="page-heading pb-2 mt-4 mb-2 ">
+        <h3>Manager</h3> <a href="{{path('homePage')}}"><button type="button" class="btn btn-outline-primary">Back to Home page</button></a>
+    </div>
+    <div class="page-content mt-4">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
+                        <div class="form-body">
+                            <div class="row my-4">
+                                <div class="col-12 my-3">
+                                    <div class="form-group">
+                                        <label for="contact-info-vertical">Phone number</label>
+                                        {{ form_widget(form.phonenumber, {'attr':{'placeholder':'Enter your phone number'}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-12 my-3">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Comment</label>
+                                        {{ form_widget(form.comment, {'attr':{'placeholder':'Comment...'}}) }}
+                                    </div>
+                                <div class="col-12 my-3 d-flex justify-content-end pt-2">
+                                    {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
+                                    <button type="reset"
+                                        class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div> 
+    </div>
+{% endblock %}

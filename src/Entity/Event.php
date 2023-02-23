@@ -16,9 +16,6 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $eventID = null;
-
     #[ORM\Column(length: 255)]
     private ?string $eventName = null;
 
@@ -37,29 +34,24 @@ class Event
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $createDay = null;
 
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: RegistrationStore::class)]
-    private Collection $registrationStores;
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
+    private Collection $eventRegistrations;
+
+    #[ORM\ManyToOne(inversedBy: 'host')]
+    private ?eventhostinfo $host = null;
+
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
+    private Collection $event;
 
     public function __construct()
     {
-        $this->registrationStores = new ArrayCollection();
+        $this->eventRegistrations = new ArrayCollection();
+        $this->event = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEventID(): ?int
-    {
-        return $this->eventID;
-    }
-
-    public function setEventID(int $eventID): self
-    {
-        $this->eventID = $eventID;
-
-        return $this;
     }
 
     public function getEventName(): ?string
@@ -135,33 +127,53 @@ class Event
     }
 
     /**
-     * @return Collection<int, RegistrationStore>
+     * @return Collection<int, EventRegistration>
      */
-    public function getRegistrationStores(): Collection
+    public function getEventRegistrations(): Collection
     {
-        return $this->registrationStores;
+        return $this->eventRegistrations;
     }
 
-    public function addRegistrationStore(RegistrationStore $registrationStore): self
+    public function getHost(): ?eventhostinfo
     {
-        if (!$this->registrationStores->contains($registrationStore)) {
-            $this->registrationStores->add($registrationStore);
-            $registrationStore->setEvent($this);
+        return $this->host;
+    }
+
+    public function setHost(?eventhostinfo $host): self
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EventRegistration>
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(EventRegistration $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event->add($event);
+            $event->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removeRegistrationStore(RegistrationStore $registrationStore): self
+    public function removeEvent(EventRegistration $event): self
     {
-        if ($this->registrationStores->removeElement($registrationStore)) {
+        if ($this->event->removeElement($event)) {
             // set the owning side to null (unless already changed)
-            if ($registrationStore->getEvent() === $this) {
-                $registrationStore->setEvent(null);
+            if ($event->getEvent() === $this) {
+                $event->setEvent(null);
             }
         }
 
         return $this;
     }
-    
+
 }
