@@ -82,20 +82,25 @@
 
 
             <li class = "menu-item">
-            <a href = "{{path('event_show')}}" class="menu-link menu-toggle">
+              <a href = "{{path('event_show')}}" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                  <div>Event list</div>
+              </a>
+
+              <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Event list</div>
-            </a>
+                <div> Create event </div>
+              </a>
 
-            <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-dock-top"></i>
-              <div>Calendar</div>
-            </a>
+              <a class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div> User account </div>
+              </a>  
 
-            <a class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-dock-top"></i>
-              <div>User account</div>
-            </a>  
+              <a href = " {{ path('event_regis_show') }} "class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div> Event registration show </div>
+              </a>  
             </li>
             
           </ul>

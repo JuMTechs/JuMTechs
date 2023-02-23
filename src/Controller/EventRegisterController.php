@@ -33,4 +33,22 @@ class EventRegisterController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/event/register/show", name="event_regis_show")
+     */
+    public function readAllAction(): Response
+    {
+        $event = $this->repo->findAll();
+
+        $user = $this->getUser();//get logined user 
+        $uid = $user->getId();
+        $uname = $user->getName();
+        
+        return $this->render('event_register/show.html.twig', [
+            'events'=>$event,
+            'uid'=>$uid,
+            'uname'=>$uname
+        ]);
+    }
 }
