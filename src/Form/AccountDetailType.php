@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Event;
+use App\Entity\AccountDetail;
 use Doctrine\ORM\Query\AST\Functions\AbsFunction;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -13,37 +13,35 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EventType extends AbstractType{
+class AccountDetailType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('eventName')
+        ->add('user',HiddenType::class, ['data'=>null])
+
+        ->add('status')
+
         ->add('file',FileType::class,[
-            'label' => 'Event Image',
+            'label' => 'Image',
             'required' => false,
             'mapped' =>false
         ])
-        ->add('eventImage',HiddenType::class,[
+
+        ->add('image',HiddenType::class,[
             'required' =>false
         ])
-        ->add('eventStartDay')
-        ->add('eventEndDay')
-        ->add('eventDetail')
-
-        ->add('created',DateType::class,['data'=>new \DateTime(),'disabled'=>true])
-
-        ->add('host')
         
+        ->add('birthday')
+
         ->add('save',SubmitType::class,[
             'label' => "Confirm"
         ]);
-    
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class'=>Event::class
+            'data_class'=>AccountDetail::class
         ]);
     }
 }

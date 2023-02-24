@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Entity\EventRegistration;
 use App\Form\EventRegisType;
 use App\Repository\EventRegistrationRepository;
+use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,13 +21,22 @@ class EventRegisterController extends AbstractController
       $this->repo = $repo;
     }
     /**
-     * @Route("/event/register", name="event_register")
+     * @Route("/event/register/{id}", name="event_register")
      */
-    public function RegisEvent(Request $request, SluggerInterface $slugger): Response
+    public function RegisEvent(Request $request, SluggerInterface $slugger, int $id, EventRepository $eventRepo ): Response
     {
         $new = new EventRegistration();
         $form = $this->createForm(EventRegisType::class,$new);
         $form->handleRequest($request);
+
+        $user_id = $this -> getUser();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $event = $entityManager->getRepository(Event::class)->find($id);
+        $new->setEvent($event); 
+        $new->setUser($user_id);
+        
         if($form->isSubmitted() && $form->isValid())
         {
             $this->repo->save($new,true);
@@ -35,5 +46,16 @@ class EventRegisterController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    
+
+    /**
+     * @Route("/eventRegisShow", name="eveRegisShow")
+     */
+    public function showRegisEvent(Request $request, SluggerInterface $slugger): Response
+    {
+        $show = $this -> repo -> findAll();
+        return $this->render('event_register/show.html.twig', 
+        [
+            'show' => $show
+        ]);
+    }
 }

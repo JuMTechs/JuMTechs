@@ -52,7 +52,7 @@
           <a class="nav-link text-white" href="{{path('app_account')}}"> Account </a>
         </li>
         {% if app.user != null %}
-          {% if  id == 4 %}
+          {% if app.user.id == 4 %}
             <li class="nav-item active">
               <a class="nav-link " style="color:white" href="{{path('adminPage')}}"> Admin Page </a>
             </li>
@@ -74,8 +74,8 @@
         Register
       </a>
       {% else %}
-      <a id="welc" class="nav-link me-3" href="#">
-        Nice to meet you, {{name}}
+      <a app.user.id="welc" class="nav-link me-3" href="#">
+        Nice to meet you, {{app.user.name}}
       </a>
       <a class="nav-link me-3" href="{{ path ('app_logout') }} ">
         Log out
@@ -152,7 +152,9 @@
       {% endif %}
     {{ a.eventDetail }}
     <br>
-    <button href = "#"> Register </button>
+    <button class="btn btn-outline-success">
+        <a href = "{{path('event_register',{'id':a.id})}}"> Register </a>
+    </button>
   </div>
 {% endfor %}
 
