@@ -17,23 +17,25 @@
             <table class="table table-striped">
             <thead>
                 <tr>
-                <th class = "text-dark">ID</th>
-                <th class = "text-dark">Event Name</th>
-                <th class = "text-dark">Event start</th>
-                <th class = "text-dark">Event end</th>
-                <th class = "text-dark">Event created day</th>
-                <th class = "text-dark">Detail</th>
-                <th class = "text-dark">Action</th>
+                <th>#</th>
+                <th>Event Name</th>
+                <th>Event start</th>
+                <th>Event end</th>
+                <th>Detail</th>
+                <th>Host ID</th> 
+                <th>Created date</th>
+                <th>Action</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                {% for c in events %}
+                {% for c in event %}
                     <tr>
-                        <td>{{ c.id}}</td>
-                        <td>{{ c.eventName}}</td>
-                        <td>{{ c.eventStartDay|date("m/d/Y")}}</td>
-                        <td>{{ c.eventEndDay|date("m/d/Y")}}</td>
-                        <td>{{ c.eventDetail}}</td>
+                        <td>{{ c.id }}</td>
+                        <td>{{ c.eventName }}</td>
+                        <td>{{ c.eventStartDay|date("m/d/Y") }}</td>
+                        <td>{{ c.eventEndDay|date("m/d/Y") }}</td>
+                        <td>{{ c.eventDetail }}</td>
+                        <td>{{ c.host.id }}</td>
                         <td>{{ c.created|date("m/d/Y")}}</td>
                         <td> 
                             <a href="{{path('event_edit',{'id':c.id})}}"> Edit </a>

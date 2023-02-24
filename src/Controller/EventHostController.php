@@ -29,7 +29,7 @@ class EventHostController extends AbstractController
     public function readAllAction(): Response
     {
         $host = $this->repo->findAll();
-        return $this->render('event/index.html.twig', [
+        return $this->render('host/show.html.twig', [
             'host'=>$host
         ]);
     }
@@ -88,9 +88,8 @@ class EventHostController extends AbstractController
                 $c->setImage($newFilename);
             }
             $this->repo->save($c,true);
-            return $this->redirectToRoute('host_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('adminPage', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->render("host/index.html.twig",[
             'form' => $form->createView()
         ]);
