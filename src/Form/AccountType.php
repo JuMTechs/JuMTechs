@@ -10,23 +10,14 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class EventType extends AbstractType{
+class AccountType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
         ->add('eventName')
-        ->add('created',DateType::class,[
-            'widget' => 'single_text','required' =>false
-        ])
-        ->add('file',FileType::class,[
-            'label' => 'eventImage',
-            'required' => false,
-            'mapped' =>false
-        ])
         ->add('eventImage',HiddenType::class,[
             'required' =>false
         ])
-
         ->add('eventStartDay')
         ->add('eventEndDay')
         ->add('eventDetail')

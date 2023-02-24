@@ -17,14 +17,14 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event ID</label>
-                                        {{ form_widget(form.eventID, {'attr':{'placeholder':'Event ID'}}) }}
+                                        {{ form_widget(form.id, {'attr':{'placeholder':'Event ID'}}) }}
                                     </div>
-                                </div>
+                                </div> 
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="first-name-vertical">Event Name</label>
-                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event eventName'}}) }}
+                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'eventName'}}) }}
                                         
                                         {# <input type="text" id="pname" class="form-control"
                                             name="Product_Name" placeholder="Product Name"
@@ -42,13 +42,6 @@
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event end date</label>
                                         {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'Event end day'}}) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-vertical">Event create day</label>
-                                        {{ form_widget(form.createDay, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
                                     </div>
                                 </div>
                                 
@@ -79,6 +72,13 @@
                                         {% endif %}
                                         
                                     </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Event create day</label>
+                                        {{ form_widget(form.created)}}
+                                    </div>
+                                </div>
                                     
                                 <div class="col-12 d-flex justify-content-end pt-2">
                                 

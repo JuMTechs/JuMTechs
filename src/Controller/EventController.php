@@ -25,7 +25,7 @@ class EventController extends AbstractController
    }
    
     /**
-     * @Route("/", name="event_show")
+     * @Route("/", name="event_show_all")
      */
     public function readAllAction(): Response
     {
@@ -50,14 +50,13 @@ class EventController extends AbstractController
      */
     public function createAction(Request $req, SluggerInterface $slugger): Response
     {
-        
         $e = new Event();
         $form = $this->createForm(EventType::class, $e);
 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
-            if($e->getCreateDay()===null){
-                $e->setCreateDay(new \DateTime());
+            if( $e->getCreated()===null ){
+                $e->setCreated(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();
             if ($imgFile) {
@@ -75,8 +74,7 @@ class EventController extends AbstractController
      /**
      * @Route("/edit/{id}", name="event_edit",requirements={"id"="\d+"})
      */
-    public function editAction(Request $req, Event $c,
-    SluggerInterface $slugger): Response
+    public function editAction(Request $req, Event $c, SluggerInterface $slugger): Response
     {
         
         $form = $this->createForm(EventType::class, $c);   
@@ -84,8 +82,8 @@ class EventController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
 
-            if($c->getCreateDay()===null){
-                $c->setCreateDay(new \DateTime());
+            if($c->getCreated()===null){
+                $c->setCreated(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();
             if ($imgFile) {
@@ -122,8 +120,7 @@ class EventController extends AbstractController
     public function deleteAction(Request $request, Event $c): Response
     {
         $this->repo->remove($c,true);
-        return $this->redirectToRoute('event_show', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('event_show_all', [], Response::HTTP_SEE_OTHER);
     }
 
-    
 }

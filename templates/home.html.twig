@@ -41,22 +41,26 @@
           src="https://talent2win.com/wp-content/uploads/2021/09/LogoDefault.png"
           height="20"
           alt="Logo"
-          loading="lazy"
-        />
+          loading="lazy" />
       </a>
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
           <a class="nav-link" style="color:white" href="/">Home</a>
         </li>
-        {# <li class="nav-item">
-          <a class="nav-link" href="{{path('product_show')}}">Product</a>
-        </li> #}
         <li class="nav-item active">
           <a class="nav-link " style="color:white" href="{{path('app_account')}}"> Account </a>
         </li>
+        {% if app.user != null %}
+          {% if  id == 4 %}
+            <li class="nav-item active">
+              <a class="nav-link " style="color:white" href="{{path('adminPage')}}"> Admin Page </a>
+            </li>
+          {% endif %}
+        {% endif %}
       </ul>
-      <!-- Left links -->      
+
+      <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
     
@@ -71,6 +75,9 @@
         Register
       </a>
       {% else %}
+      <a id="welc" class="nav-link me-3" href="#">
+        Nice to meet you, {{name}}
+      </a>
       <a class="nav-link me-3" href="{{ path ('app_logout') }} ">
         Log out
       </a>
@@ -97,68 +104,7 @@
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">EVENT DISPLAY ALL</a>
-
-    <!-- Toggle button -->
-    <button 
-       class="navbar-toggler" 
-       type="button" 
-       data-bs-toggle="collapse" 
-       data-bs-target="#navbarSupportedContent2">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <!-- Link -->
-        <li class="nav-item acitve">
-          <a class="nav-link text-white" href="#">All</a>
-        </li>
-
-      </ul>
-
-      <!-- Search -->
-      <form class="w-auto py-1" style="max-width: 12rem">
-        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
-      </form>
-
-    </div>
-  </div>
-  <!-- Container wrapper -->
-</nav>
-
-{% for a in events %}
-  <div class = "d-inline-block mx-2 my-2">
-    {{ a.eventName }}
-    <br>
-    {{ a.eventStartDay|date("m/d/Y") }}
-    <br>
-    {{ a.eventEndDay|date("m/d/Y") }}
-    <br>
-    {% set image = a.eventImage %}
-      <div class="container d-flex">
-      <img src="{{asset('uploads/'~image)}}" width = "10%" height = "10%"/>
-      </div>
-    <br>
-    {{ a.eventDetail }}
-    <br>
-    <button href = "#"> Register </button>
-  </div>
-{% endfor %}
-
-<!-- Navbar -->
-</div>
-
-<div class="container">
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand" href="#"> RECENT EVENT </a>
+    <a class="navbar-brand" href="#"> ALL EVENT</a>
 
     <!-- Toggle button -->
     <button 
@@ -180,6 +126,70 @@
 
       </ul>
 
+      <!-- Search -->
+      <form class="w-auto py-1" style="max-width: 12rem">
+        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
+      </form>
+
+    </div>
+  </div>
+  <!-- Container wrapper -->
+</nav>
+
+{% for a in events %}
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class = "d-inline-block mx-2 my-2 border-2 border-color:black ">
+      {{ a.eventName }}
+      <br>
+      {{ a.eventStartDay|date("m/d/Y") }}
+      <br>
+      {{ a.eventEndDay|date("m/d/Y") }}
+      <br>
+      {% if a.eventImage != null %}
+      {% set image = a.eventImage %}
+        <div class="container d-flex">
+        <img src="{{asset('uploads/'~image)}}" width = "30%" height = "30%"/>
+        </div>
+      <br>
+      {% endif %}
+      {{ a.eventDetail }}
+      <br>
+      <button href = "#"> Register </button>
+    </div>
+  </div>  
+{% endfor %}
+
+<!-- Navbar -->
+</div>
+
+<div class="container">
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand"> RECENT EVENT </a>
+
+    <!-- Toggle button -->
+    <button 
+       class="navbar-toggler" 
+       type="button" 
+       data-bs-toggle="collapse" 
+       data-bs-target="#navbarSupportedContent2">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        {# <!-- Link -->
+        <li class="nav-item acitve">
+          <a class="nav-link text-white" href="#">All</a>
+        </li> #}
+
+      </ul>
     </div>
   </div>
   <!-- Container wrapper -->

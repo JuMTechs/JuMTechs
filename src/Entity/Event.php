@@ -32,13 +32,13 @@ class Event
     private ?string $eventImage = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $createDay = null;
+    private ?\DateTimeInterface $created = null;
 
     #[ORM\OneToMany(mappedBy: 'eventRegistraion', targetEntity: EventRegistration::class)]
     private Collection $eventRegistrations;
 
     #[ORM\ManyToOne(inversedBy: 'host')]
-    private ?EventHostInfo $host = null;
+    private ?eventhostinfo $host = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
     private Collection $event;
@@ -114,14 +114,14 @@ class Event
         return $this;
     }
 
-    public function getCreateDay(): ?\DateTimeInterface
+    public function getCreated(): ?\DateTimeInterface
     {
-        return $this->createDay;
+        return $this->created;
     }
 
-    public function setCreateDay(\DateTimeInterface $createDay): self
+    public function setCreated(\DateTimeInterface $created): self
     {
-        $this->createDay = $createDay;
+        $this->created = $created;
 
         return $this;
     }
@@ -172,7 +172,6 @@ class Event
                 $event->setEvent(null);
             }
         }
-
         return $this;
     }
 
