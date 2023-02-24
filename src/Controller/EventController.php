@@ -55,8 +55,8 @@ class EventController extends AbstractController
 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
-            if($e->getCreateDay()===null){
-                $e->setCreateDay(new \DateTime());
+            if($e->getCreated()===null){
+                $e->setCreated(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();
             if ($imgFile) {
@@ -82,8 +82,8 @@ class EventController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
 
-            if($c->getCreateDay()===null){
-                $c->setCreateDay(new \DateTime());
+            if($c->getCreated()===null){
+                $c->setCreated(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();
             if ($imgFile) {

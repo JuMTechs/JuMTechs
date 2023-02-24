@@ -32,7 +32,8 @@ class Event
     private ?string $eventImage = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $createDay = null;
+    private ?\DateTimeInterface $created = null;
+
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
     private Collection $eventRegistrations;
@@ -43,6 +44,7 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
     private Collection $event;
 
+  
     public function __construct()
     {
         $this->eventRegistrations = new ArrayCollection();
@@ -114,18 +116,6 @@ class Event
         return $this;
     }
 
-    public function getCreateDay(): ?\DateTimeInterface
-    {
-        return $this->createDay;
-    }
-
-    public function setCreateDay(\DateTimeInterface $createDay): self
-    {
-        $this->createDay = $createDay;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, EventRegistration>
      */
@@ -172,6 +162,18 @@ class Event
                 $event->setEvent(null);
             }
         }
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
         return $this;
     }
 

@@ -26,7 +26,7 @@ class AccountController extends AbstractController
    }
 
     /**
-     * @Route("/accounts", name="app_account")
+     * @Route("/", name="app_account")
      */
     public function AccountAction(): Response
     {
@@ -49,6 +49,8 @@ class AccountController extends AbstractController
      */
     public function AccountShowAction(UserRepository $repo): Response
     {
+        $user = $this->getUser();//get logined user 
+        $userName = $user->getName();
         $account = $repo->findUserAccount('USER');
         $data = [];
         foreach($account as $a){
@@ -61,6 +63,7 @@ class AccountController extends AbstractController
         // return $this->json($data);
         return $this->render('account/show.html.twig', [
             'account' => $data,
+            'name' => $userName 
         ]);
     }
 

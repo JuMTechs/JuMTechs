@@ -7,6 +7,29 @@
   background-position: center;
 } */
 
+@keyframes k1
+{
+    from{ color: purple;     }
+    15%{  color: red  ;      }
+    30%{  color: orange;     }
+    45%{  color: yellow;     }
+    60%{  color: lime;       }
+    75%{  color: blue;       }
+    90%{  color: blueviolet; }
+    to{   color: purple;     }
+}
+#welc{
+    padding: 5px;
+    border: 1;
+    animation-name: k1;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+#welc{
+    font-size: 14px;
+    text-align: center;
+}
+
 div#Event ul{
   list-style: none;
   background-color: white;

@@ -121,8 +121,7 @@
                 </div>
               </div>
               <!-- /Search -->
-
-              {# <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -140,10 +139,11 @@
                               <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
+                          {% if app.user %}
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">
                                 <tr>
-                                    <td>{{ accounts }}</td>
+                                    <td>{{ userName }}</td>
                                 </tr>
                             </span>
                           </div>
@@ -156,7 +156,7 @@
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Edit profile</span>
                       </a>
                     </li>
                     
@@ -164,15 +164,24 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" href="{{path('app_logout')}}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>
                     </li>
                   </ul>
+                  {% else %}
+                  <li>
+                      <a class="dropdown-item" href="{{path('app_login')}}">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Sign in</span>
+                      </a>
+                    </li>
+                  {% endif %}
                 </li>
                 <!--/ User -->
-              </ul> #}
+              </ul>
+
             </div>
           </nav>
 
@@ -180,11 +189,27 @@
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
-            <!-- Content -->
-      
             <div class="container-xxl flex-grow-1 container-p-y">
                 {% block body %}
-                    <div class="month mx-auto my-auto">
+                    <div class="card">
+                      <div class="container mb-3">
+                        <div class="table-responsive text-dark">
+                          <table class="table table-hover">
+                          <thead>
+                            <th> Id </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                          </thead>
+                          <tbody>
+                            <th>{{ userId }}</th>
+                            <th>{{ userName }}</th>
+                            <th>{{ userEmail }}</th>
+                          </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="month mx-auto my-4">
                             <div id="current-time">
                               <script>
                                 var curDate = new Date();
@@ -197,21 +222,6 @@
                     </div>
                 {% endblock %}
             </div>
-          
-            <div class="card">
-              <div class="container mb-3">
-                <div class="table-responsive text-dark">
-                  <table class="table table-hover">
-                    <tr>
-                        <th>{{ userId }}</th>
-                        <th>{{ userName }}</th>
-                        <th>{{ userEmail }}</th>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-
           </div>
             <!-- / Content -->
 
