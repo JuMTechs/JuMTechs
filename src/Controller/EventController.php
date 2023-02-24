@@ -25,13 +25,13 @@ class EventController extends AbstractController
    }
    
     /**
-     * @Route("/", name="event_show_all")
+     * @Route("/", name="event_show")
      */
     public function readAllAction(): Response
     {
         $event = $this->repo->findAll();
         return $this->render('event/index.html.twig', [
-            'events'=>$event
+            'event'=>$event
         ]);
     }
 
@@ -120,7 +120,7 @@ class EventController extends AbstractController
     public function deleteAction(Request $request, Event $c): Response
     {
         $this->repo->remove($c,true);
-        return $this->redirectToRoute('event_show_all', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('event_show', [], Response::HTTP_SEE_OTHER);
     }
 
 }

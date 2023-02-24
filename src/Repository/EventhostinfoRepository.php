@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\eventhostinfo;
+use App\Entity\EventHostInfo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<eventhostinfo>
+ * @extends ServiceEntityRepository<EventHostInfo>
  *
- * @method eventhostinfo|null find($id, $lockMode = null, $lockVersion = null)
- * @method eventhostinfo|null findOneBy(array $criteria, array $orderBy = null)
- * @method eventhostinfo[]    findAll()
- * @method eventhostinfo[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method EventHostInfo|null find($id, $lockMode = null, $lockVersion = null)
+ * @method EventHostInfo|null findOneBy(array $criteria, array $orderBy = null)
+ * @method EventHostInfo[]    findAll()
+ * @method EventHostInfo[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class eventhostinfoRepository extends ServiceEntityRepository
+class EventHostInfoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, eventhostinfo::class);
+        parent::__construct($registry, EventHostInfo::class);
     }
 
-    public function save(eventhostinfo $entity, bool $flush = false): void
+    public function save(EventHostInfo $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class eventhostinfoRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(eventhostinfo $entity, bool $flush = false): void
+    public function remove(EventHostInfo $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -42,7 +42,7 @@ class eventhostinfoRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return eventhostinfo[] Returns an array of eventhostinfo objects
+//     * @return EventHostInfo[] Returns an array of EventHostInfo objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -56,7 +56,7 @@ class eventhostinfoRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?eventhostinfo
+//    public function findOneBySomeField($value): ?EventHostInfo
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

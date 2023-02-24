@@ -22,16 +22,17 @@ class EventRegisterController extends AbstractController
     {
       $this->repo = $repo;
     }
-    
-    #[Route('/register', name: 'event_register')]
+    /**
+     * @Route("/register", name="event_register",requirements={"id"="\d+"})
+     */
     public function RegisEvent(Request $request): Response
     {
-        $new = new EventRegistration();
-        $form = $this->createForm(EventRegisType::class,$new);
+        $event = new EventRegistration();
+        $form = $this->createForm(EventRegisType::class,$event);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $this->repo->save($new,true);
+            $this->repo->save($event,true);
             return $this->redirectToRoute('homePage', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('event_register/index.html.twig', [

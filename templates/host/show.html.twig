@@ -4,7 +4,7 @@
 
 {% block body %}
     <div className="page-heading pb-2 mt-4 mb-2 ">
-        <h3>Manager</h3> <a href="{{path('event_create')}}">
+        <h3>Host Manager</h3> <a href="{{path('add_host')}}">
         <button type="button" class="btn btn-outline-primary">Insert</button></a>
     </div>
     <div class="page-content">
@@ -17,26 +17,17 @@
             <table class="table table-striped">
             <thead>
                 <tr>
-                <th>#</th>
-                <th>Event Name</th>
-                <th>Event start</th>
-                <th>Event end</th>
-                <th>Detail</th>
-                <th>Host ID</th> 
-                <th>Created date</th>
-                <th>Action</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Job</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                {% for c in event %}
+                {% for c in host %}
                     <tr>
-                        <td>{{ c.id }}</td>
-                        <td>{{ c.eventName }}</td>
-                        <td>{{ c.eventStartDay|date("m/d/Y") }}</td>
-                        <td>{{ c.eventEndDay|date("m/d/Y") }}</td>
-                        <td>{{ c.eventDetail }}</td>
-                        <td>{{ c.host.id }}</td>
-                        <td>{{ c.created|date("m/d/Y")}}</td>
+                        <td>{{ c.id}}</td>
+                        <td>{{ c.name}}</td>
+                        <td>{{ c.job}}</td>
                         <td> 
                             <a href="{{path('event_edit',{'id':c.id})}}"> Edit </a>
                         </td>

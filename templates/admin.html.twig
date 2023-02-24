@@ -64,8 +64,7 @@
                 </a>
           </div>
 
-          <div class="menu-inner-shadow"></div>
-
+        <div class="menu-inner-shadow"></div>
           <ul class="menu-inner py-1">
             <!-- Homepage -->
             <li class="menu-item active">
@@ -80,6 +79,10 @@
             </li>
             <li class="menu-item">
 
+            <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
+              <div>Create event</div>
+            </a>
 
             <li class = "menu-item">
               <a href = "{{path('event_show')}}" class="menu-link menu-toggle">
@@ -87,9 +90,9 @@
                   <div>Event list</div>
               </a>
 
-              <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
+              <a href = "{{path('add_host')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Create event</div>
+                <div>Create host</div>
               </a>
 
               <a href = "{{path('app_account_show')}}"class="menu-link menu-toggle">
@@ -126,12 +129,12 @@
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
+                  {# <input
                     type="text"
                     class="form-control border-0 shadow-none"
                     placeholder="Search..."
                     aria-label="Search..."
-                  />
+                  /> #}
                 </div>
               </div>
               <!-- /Search -->
@@ -158,7 +161,9 @@
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">
                                 <tr>
-                                    <td> {{ name }}</td>
+                                  {% if app.user != null %}
+                                    <td> {{ app.user.name }} </td>
+                                  {% endif %}
                                 </tr>
                             </span>
                             <small class="text-muted">Admin</small>
@@ -239,7 +244,6 @@
                     class="footer-link me-4"
                     >Documentation</a
                   >
-
                   <a
                     href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
                     target="_blank"

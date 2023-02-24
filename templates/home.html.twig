@@ -52,7 +52,7 @@
           <a class="nav-link " style="color:white" href="{{path('app_account')}}"> Account </a>
         </li>
         {% if app.user != null %}
-          {% if  id == 4 %}
+          {% if  app.user.id == 4 %}
             <li class="nav-item active">
               <a class="nav-link " style="color:white" href="{{path('adminPage')}}"> Admin Page </a>
             </li>
@@ -67,7 +67,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
 
-     {% if app.user == null  %}
+      {% if app.user == null  %}
       <a class="nav-link me-3" href="{{path('app_login')}}">
         <i class="fas fa-sign-in-alt"></i>
       </a>
@@ -76,7 +76,7 @@
       </a>
       {% else %}
       <a id="welc" class="nav-link me-3" href="#">
-        Nice to meet you, {{name}}
+        Nice to meet you, {{app.user.name}}
       </a>
       <a class="nav-link me-3" href="{{ path ('app_logout') }} ">
         Log out
@@ -154,9 +154,11 @@
       {% endif %}
       {{ a.eventDetail }}
       <br>
-      <button href = "#"> Register </button>
+      <button class="btn btn-outline-success">
+        <a href = "{{ path('event_register') }}"> Register </a>
+      </button>
     </div>
-  </div>  
+  </div>
 {% endfor %}
 
 <!-- Navbar -->

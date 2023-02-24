@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\eventhostinfoRepository;
+use App\Repository\EventHostInfoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: eventhostinfoRepository::class)]
-class eventhostinfo
+#[ORM\Entity(repositoryClass: EventHostInfoRepository::class)]
+class EventHostInfo
 {
-    #[ORM\Id]   
+    #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
