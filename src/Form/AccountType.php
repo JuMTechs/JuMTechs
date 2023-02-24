@@ -15,18 +15,9 @@ class EventType extends AbstractType{
     {
         $builder
         ->add('eventName')
-        ->add('createDay',DateType::class,[
-            'widget' => 'single_text','required' =>false
-        ])
-        ->add('file',FileType::class,[
-            'label' => 'Event Image',
-            'required' => false,
-            'mapped' =>false
-        ])
         ->add('eventImage',HiddenType::class,[
             'required' =>false
         ])
-
         ->add('eventStartDay')
         ->add('eventEndDay')
         ->add('eventDetail')

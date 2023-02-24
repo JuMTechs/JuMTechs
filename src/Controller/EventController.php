@@ -35,22 +35,21 @@ class EventController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
-     */
-    public function showAction(Event $e): Response
-    {
-        return $this->render('event/index.html.twig', [
-            'e'=>$e
-        ]);
-    }
+    //  /**
+    //  * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
+    //  */
+    // public function showAction(Event $e): Response
+    // {
+    //     return $this->render('event/index.html.twig', [
+    //         'e'=>$e
+    //     ]);
+    // }
 
      /**
      * @Route("/add", name="event_create")
      */
     public function createAction(Request $req, SluggerInterface $slugger): Response
     {
-        
         $e = new Event();
         $form = $this->createForm(EventType::class, $e);
 
@@ -75,8 +74,7 @@ class EventController extends AbstractController
      /**
      * @Route("/edit/{id}", name="event_edit",requirements={"id"="\d+"})
      */
-    public function editAction(Request $req, Event $c,
-    SluggerInterface $slugger): Response
+    public function editAction(Request $req, Event $c, SluggerInterface $slugger): Response
     {
         
         $form = $this->createForm(EventType::class, $c);   
@@ -125,5 +123,4 @@ class EventController extends AbstractController
         return $this->redirectToRoute('event_show', [], Response::HTTP_SEE_OTHER);
     }
 
-    
 }

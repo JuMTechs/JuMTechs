@@ -38,7 +38,7 @@ class Event
     private Collection $eventRegistrations;
 
     #[ORM\ManyToOne(inversedBy: 'host')]
-    private ?eventhostinfo $host = null;
+    private ?EventHostInfo $host = null;
 
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
     private Collection $event;
@@ -134,12 +134,12 @@ class Event
         return $this->eventRegistrations;
     }
 
-    public function getHost(): ?eventhostinfo
+    public function getHost(): ?EventHostInfo
     {
         return $this->host;
     }
 
-    public function setHost(?eventhostinfo $host): self
+    public function setHost(?EventHostInfo $host): self
     {
         $this->host = $host;
 
@@ -172,7 +172,6 @@ class Event
                 $event->setEvent(null);
             }
         }
-
         return $this;
     }
 

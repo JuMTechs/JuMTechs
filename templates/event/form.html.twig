@@ -14,18 +14,18 @@
                     {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
                         <div class="form-body">
                             <div class="row">
-                            
+{#                             
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event ID</label>
-                                        {{ form_widget(form.eventID, {'attr':{'placeholder':'eve_start_day'}}) }}
+                                        {{ form_widget(form., {'attr':{'placeholder':'eventId'}}) }}
                                     </div>
-                                </div>
+                                </div> #}
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="first-name-vertical">Event Name</label>
-                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event eventName'}}) }}
+                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'eventName'}}) }}
                                         
                                         {# <input type="text" id="pname" class="form-control"
                                             name="Product_Name" placeholder="Product Name"

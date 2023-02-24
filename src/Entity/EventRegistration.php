@@ -20,10 +20,10 @@ class EventRegistration
     private ?string $comment = null;
 
     #[ORM\ManyToOne(inversedBy: 'event')]
-    private ?event $event = null;
+    private ?Event $event = null;
 
     #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?user $user = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -77,5 +77,4 @@ class EventRegistration
 
         return $this;
     }
-
 }

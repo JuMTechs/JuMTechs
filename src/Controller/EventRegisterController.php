@@ -18,7 +18,9 @@ class EventRegisterController extends AbstractController
     {
       $this->repo = $repo;
     }
-    #[Route('/event/register', name: 'app_event_register')]
+    /**
+     * @Route("/event/register", name="app_event_register")
+     */
     public function RegisEvent(Request $request, SluggerInterface $slugger): Response
     {
         $new = new EventRegistration();
@@ -33,4 +35,20 @@ class EventRegisterController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    
+    // #[Route('/event/register', name: 'app_event_register')]
+    // public function RegisEvent(Request $request, SluggerInterface $slugger): Response
+    // {
+    //     $new = new EventRegistration();
+    //     $form = $this->createForm(EventRegisType::class,$new);
+    //     $form->handleRequest($request);
+    //     if($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $this->repo->save($new,true);
+    //         return $this->redirectToRoute('homePage', [], Response::HTTP_SEE_OTHER);
+    //     }
+    //     return $this->render('event_register/index.html.twig', [
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 }

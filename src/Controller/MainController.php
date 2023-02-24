@@ -27,11 +27,11 @@ class MainController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/admin", name="adminPage")
-    //  */
-    // public function adminPageAction(): Response
-    // {
-    //     return $this->render('admin.html.twig');
-    // }
+    /**
+     * @Route("/admin", name="adminPage")
+     */
+    public function adminPageAction(): Response
+    {
+        return $this->render('admin.html.twig');
+    }
 }
