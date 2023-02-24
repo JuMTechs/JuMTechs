@@ -19,12 +19,11 @@ class EventRegistration
     #[ORM\Column(length: 255)]
     private ?string $comment = null;
 
-    #[ORM\ManyToOne(inversedBy: 'eventRegistrations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?event $Event = null;
+    #[ORM\ManyToOne(inversedBy: 'event')]
+    private ?Event $event = null;
 
-    #[ORM\ManyToOne(inversedBy: 'eventRegistrations')]
-    private ?User $User = null;
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -55,26 +54,26 @@ class EventRegistration
         return $this;
     }
 
-    public function getEventID(): ?event
+    public function getEvent(): ?event
     {
-        return $this->Event;
+        return $this->event;
     }
 
-    public function setEventID(?event $EventID): self
+    public function setEvent(?event $event): self
     {
-        $this->Event = $EventID;
+        $this->event = $event;
 
         return $this;
     }
 
-    public function getUserID(): ?user
+    public function getUser(): ?user
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUserID(?User $UserID): self
+    public function setUser(?user $user): self
     {
-        $this->User = $UserID;
+        $this->user = $user;
 
         return $this;
     }

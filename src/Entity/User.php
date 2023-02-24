@@ -32,15 +32,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: AccountDetail::class)]
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?AccountDetail $accountDetail = null;
 
-    #[ORM\OneToMany(mappedBy: 'UserID', targetEntity: EventRegistration::class)]
-    private Collection $eventRegistrations;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: EventRegistration::class)]
+    private Collection $user;
 
     public function __construct()
     {
-        $this->eventRegistrations = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,27 +164,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, EventRegistration>
      */
-    public function getEventRegistrations(): Collection
+    public function getUser(): Collection
     {
-        return $this->eventRegistrations;
+        return $this->user;
     }
 
-    public function addEventRegistration(EventRegistration $eventRegistration): self
+    public function addUser(EventRegistration $user): self
     {
-        if (!$this->eventRegistrations->contains($eventRegistration)) {
-            $this->eventRegistrations->add($eventRegistration);
-            $eventRegistration->setUserID($this);
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+            $user->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeEventRegistration(EventRegistration $eventRegistration): self
+    public function removeUser(EventRegistration $user): self
     {
-        if ($this->eventRegistrations->removeElement($eventRegistration)) {
+        if ($this->user->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($eventRegistration->getUserID() === $this) {
-                $eventRegistration->setUserID(null);
+            if ($user->getUser() === $this) {
+                $user->setUser(null);
             }
         }
 

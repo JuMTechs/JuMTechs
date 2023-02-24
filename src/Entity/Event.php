@@ -16,9 +16,6 @@ class Event
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $eventID = null;
-
     #[ORM\Column(length: 255)]
     private ?string $eventName = null;
 
@@ -37,33 +34,24 @@ class Event
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $createDay = null;
 
-    #[ORM\OneToMany(mappedBy: 'EventID', targetEntity: EventRegistration::class)]
+    #[ORM\OneToMany(mappedBy: 'eventRegistraion', targetEntity: EventRegistration::class)]
     private Collection $eventRegistrations;
 
     #[ORM\ManyToOne(inversedBy: 'host')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?eventhostinfo $host = null;
+    private ?EventHostInfo $host = null;
+
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
+    private Collection $event;
 
     public function __construct()
     {
-        $this->eventRegistrations = new ArrayCollection();
+         $this->eventRegistrations = new ArrayCollection();
+        // $this->event = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEventID(): ?int
-    {
-        return $this->eventID;
-    }
-
-    public function setEventID(int $eventID): self
-    {
-        $this->eventID = $eventID;
-
-        return $this;
     }
 
     public function getEventName(): ?string
@@ -146,28 +134,6 @@ class Event
         return $this->eventRegistrations;
     }
 
-    public function addEventRegistration(EventRegistration $eventRegistration): self
-    {
-        if (!$this->eventRegistrations->contains($eventRegistration)) {
-            $this->eventRegistrations->add($eventRegistration);
-            $eventRegistration->setEventID($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEventRegistration(EventRegistration $eventRegistration): self
-    {
-        if ($this->eventRegistrations->removeElement($eventRegistration)) {
-            // set the owning side to null (unless already changed)
-            if ($eventRegistration->getEventID() === $this) {
-                $eventRegistration->setEventID(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getHost(): ?eventhostinfo
     {
         return $this->host;
@@ -179,4 +145,35 @@ class Event
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, EventRegistration>
+     */
+    public function getEvent(): Collection
+    {
+        return $this->event;
+    }
+
+    public function addEvent(EventRegistration $event): self
+    {
+        if (!$this->event->contains($event)) {
+            $this->event->add($event);
+            $event->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(EventRegistration $event): self
+    {
+        if ($this->event->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getEvent() === $this) {
+                $event->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

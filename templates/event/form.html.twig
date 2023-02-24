@@ -20,23 +20,28 @@
                                         {{ form_widget(form.eventID, {'attr':{'placeholder':'Event ID'}}) }}
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="first-name-vertical">Event Name</label>
-                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event Name'}}) }}
+                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event eventName'}}) }}
+                                        
+                                        {# <input type="text" id="pname" class="form-control"
+                                            name="Product_Name" placeholder="Product Name"
+                                            value =""> #}
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event start date</label>
-                                        {{ form_widget(form.eventStartDay, {'attr':{'placeholder':'Event Start Day'}}) }}
+                                        {{ form_widget(form.eventStartDay, {'attr':{'placeholder':'Event start day'}}) }}
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event end date</label>
-                                        {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'Event End Day'}}) }}
+                                        {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'Event end day'}}) }}
                                     </div>
                                 </div>
 
@@ -50,7 +55,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event detail</label>
-                                        {{ form_widget(form.eventDetail, {'attr':{'placeholder':'Event Detail'}}) }}
+                                        {{ form_widget(form.eventDetail, {'attr':{'placeholder':'Event detail'}}) }}
                                     </div>
                                 </div>
 

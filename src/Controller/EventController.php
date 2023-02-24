@@ -23,7 +23,7 @@ class EventController extends AbstractController
    {
       $this->repo = $repo;
    }
-
+   
     /**
      * @Route("/", name="event_show")
      */
@@ -40,7 +40,7 @@ class EventController extends AbstractController
      */
     public function showAction(Event $e): Response
     {
-        return $this->render('detail.html.twig', [
+        return $this->render('event/index.html.twig', [
             'e'=>$e
         ]);
     }

@@ -91,13 +91,13 @@
 <main>
 
 <div class = "container">
-  <img class = "card-img" src="/public/uploads/HomeBG.jpg" alt = "card">
+  <img class = "card-img" src="{{asset('uploads/HomeBG.jpg')}}">
   <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
   <!-- Container wrapper -->
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">EVENT DISPLAY</a>
+    <a class="navbar-brand" href="#">EVENT DISPLAY ALL</a>
 
     <!-- Toggle button -->
     <button 
@@ -128,6 +128,26 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+
+{% for a in events %}
+  <div class = "d-inline-block mx-2 my-2">
+    {{ a.eventName }}
+    <br>
+    {{ a.eventStartDay|date("m/d/Y") }}
+    <br>
+    {{ a.eventEndDay|date("m/d/Y") }}
+    <br>
+    {% set image = a.eventImage %}
+      <div class="container d-flex">
+      <img src="{{asset('uploads/'~image)}}" width = "10%" height = "10%"/>
+      </div>
+    <br>
+    {{ a.eventDetail }}
+    <br>
+    <button href = "#"> Register </button>
+  </div>
+{% endfor %}
+
 <!-- Navbar -->
 </div>
 
@@ -138,7 +158,7 @@
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">Calender display</a>
+    <a class="navbar-brand" href="#"> RECENT EVENT </a>
 
     <!-- Toggle button -->
     <button 
@@ -164,23 +184,26 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+ 
 <!-- Navbar -->
-   <div class = "d-inline-block bg-primary">
-                 <tbody class="table-border-bottom-0">
-                {% for c in events %}
-                <tr>
-                <td>{{ c.ID}}</td>
-                <td>{{ c.eventName}}</td>
-                <td>{{ c.eventStartDay|date("m/d/Y")}}</td>
-                <td>{{ c.eventEndDay|date("m/d/Y")}}</td>
-                <td>{{ c.eventDetail}}</td>
-                <td>{{ c.createDay|date("m/d/Y")}}</td>
-                <td>
-                {# <a href="{{path('event_edit',{'id':c.id})}}">Edit</a>
-                <a href="{{path('event_delete',{'id':c.id})}}">Delete</a></td> #}
-         </tr>
-    {% endfor %}
+
+<!-- display date start -->
+<div class="calender">
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="month mx-auto my-auto">
+      <div id="current-time">
+        <script>
+          var curDate = new Date();
+          var curDay = curDate.getDate();
+          var curYear = curDate.getFullYear();
+          var curMonth = curDate.getMonth() + 1;
+          document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
+        </script>
+      </div>
+  </div>
 </div>
+<!-- display date end-->
+   
 </main>
  <!--Main layout-->
 

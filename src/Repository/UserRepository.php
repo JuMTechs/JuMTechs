@@ -28,7 +28,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -37,7 +38,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
+        if ($flush) 
+        {
             $this->getEntityManager()->flush();
         }
     }
@@ -47,7 +49,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (!$user instanceof User) {
+        if (!$user instanceof User) 
+        {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
 
@@ -56,20 +59,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return User[] Returns an array of User objects
+    */
+   public function findUserAccount($role): array
+   {
+       return $this->createQueryBuilder('u')
+           ->andWhere('u.roles like :val')
+           ->setParameter('val', '["ROLE_%'.$role.'%"]')
+           ->getQuery()
+           ->getArrayResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?User
 //    {

@@ -50,7 +50,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     //     // return new RedirectResponse($this->urlGenerator->generate('some_route'));
     //     throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     // }
-    
+
+    // src/Security/LoginFormAuthenticator
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {

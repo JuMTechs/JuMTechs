@@ -117,8 +117,7 @@
                     type="text"
                     class="form-control border-0 shadow-none"
                     placeholder="Search..."
-                    aria-label="Search..."
-                  />
+                    aria-label="Search..." />
                 </div>
               </div>
               <!-- /Search -->
@@ -144,7 +143,11 @@
                           </div>
                   {% if app.user %}
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{app.name}}</span>
+                            <span class="fw-semibold d-block">
+                                <tr>
+                                    <td>{{ accounts }}</td>
+                                </tr>
+                            </span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -159,6 +162,7 @@
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
+                    
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
@@ -199,7 +203,7 @@
                                 var curYear = curDate.getFullYear();
                                 var curMonth = curDate.getMonth() + 1;
                                 document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
-                            </script>
+                              </script>
                             </div>
                     </div>
                 {% endblock %}

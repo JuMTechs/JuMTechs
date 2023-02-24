@@ -69,9 +69,9 @@
           <ul class="menu-inner py-1">
             <!-- Homepage -->
             <li class="menu-item active">
-              <a href="{{path('homePage')}}" class="menu-link">
+              <a href = "{{path('homePage')}}"class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics"> Homepage </div>
+                <div data-i18n="Analytics"> Home </div>
               </a>
             </li>
 
@@ -89,18 +89,18 @@
 
               <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div> Create event </div>
+                <div>Create event</div>
               </a>
 
-              <a class="menu-link menu-toggle">
+              <a href = "{{path('app_account_show')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div> User account </div>
+                <div>User account</div>
               </a>  
 
-              <a href = " {{ path('event_regis_show') }} "class="menu-link menu-toggle">
+              {# <a href = "{{path('')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div> Event registration show </div>
-              </a>  
+                <div>Event registration show</div>
+              </a>   #}
             </li>
             
           </ul>
@@ -156,7 +156,11 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                            <span class="fw-semibold d-block">
+                                <tr>
+                                    {# <td>{{ accounts }}</td> #}
+                                </tr>
+                            </span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -165,36 +169,24 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
+
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
                     </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
+            
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="app_logout">
-                        {# <i class="bx bx-power-off me-2"></i> #}
-                        <span class="align-middle">LOut</span>
+                      <a class="dropdown-item" href="{{path('app_logout')}}">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
                       </a>
                     </li>
+
                   </ul>
                 </li>
                 <!--/ User -->
