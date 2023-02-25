@@ -16,23 +16,26 @@
             <table class="table table-striped">
             <thead>
                 <tr>
+                <th>ID</th>
                 <th>Event ID</th>
-                <th>Event Name</th>
                 <th>Student ID</th>
-                <th>Student Name</th>
+                <th>Phonenumber</th>
+                <th>Comment</th>
                 <th>Action</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                {% for c in eve %}
+                {% for d in show %}
                     <tr>
-                        <td>{{ c.ID}}</td>
-                        <td>{{ c.eventName}}</td>
-                        <td>{{ uid }}</td>
-                        <td>{{ uname }}</td>
+                        <td>{{ d.id }}</td>
+                        <td>{{ d.event.id }}</td>
+                        <td>{{ d.user.id }}</td>
+                        <td>{{ d.phonenumber }}</td>
+                        <td>{{ d.comment }}</td>
                         <td>
-                        {# <a href="{{path('event_edit',{'id':c.id})}}">Edit</a>
-                        <a href="{{path('event_delete',{'id':c.id})}}">Delete</a></td> #}
+                        <a href="{{path('eveRegisEdit',{'id':d.id})}}">Edit</a>
+                        <a href="{{path('eveRegisDelete',{'id':d.id})}}">Delete</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

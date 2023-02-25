@@ -34,7 +34,7 @@ class Event
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $created = null;
 
-    #[ORM\OneToMany(mappedBy: 'eventRegistraion', targetEntity: EventRegistration::class)]
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventRegistration::class)]
     private Collection $eventRegistrations;
 
     #[ORM\ManyToOne(inversedBy: 'host')]

@@ -1,20 +1,77 @@
-<!DOCTYPE html>
-
-<title>Hello AccountDetailController!</title>
-
+{% extends "admin.html.twig" %}
+{% block title %}
+    Admin Page - Event
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div className="page-heading pb-2 mt-4 mb-2 ">
+        {# <h3>Manager</h3> <a href="{{path('event_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a> #}
+    </div>
+    <div class="page-content mt-4">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    {# <form class="form form-vertical" method="POST" action="#"> #}
+                    {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
+                        <div class="form-body">
+                            <div class="row">
+                            {# <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="contact-info-vertical">Event ID</label>
+                                        {{ form_widget(form., {'attr':{'placeholder':'eventId'}}) }}
+                                    </div>
+                                </div> #}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Status</label>
+                                        {{ form_widget(form.status, {'attr':{'placeholder':'eventName'}}) }}
+                                        
+                                        {# <input type="text" id="pname" class="form-control"
+                                            name="Product_Name" placeholder="Product Name"
+                                            value =""> #}
+                                    </div>
+                                </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/JuMTechs/src/Controller/AccountDetailController.php'|file_link(0) }}">src/Controller/AccountDetailController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/JuMTechs/templates/account_detail/index.html.twig'|file_link(0) }}">templates/account_detail/index.html.twig</a></code></li>
-    </ul>
-</div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Birthday</label>
+                                        {{ form_widget(form.birthday, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="image-vertical"></label>
+                                        
+                                        {{ form_widget(form.file) }}
+                                    </div>
+                                </div>
+
+                                {{ form_widget(form.image) }}
+                                    <div class="pt-3">
+                                    {% set img = form.image.vars.value %}
+                                        {% if img %}
+                                            <img src="{{asset('uploads/'~img)}}"
+                                        class="w-25 shadow p-3 mb-5 bg-body rounded" />
+                                        {% else %}
+                                            <img src="https://cdn2.iconfinder.com/data/icons/symbol-blue-set-3/100/Untitled-1-94-512.png"
+                                        class="w-25 shadow p-3 mb-5 bg-body rounded" />
+                                        {% endif %}
+                                    </div>
+                                    
+                                <div class="col-12 d-flex justify-content-end pt-2">
+                                
+                                    {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
+                                    <button type="reset"
+                                        class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    {# </form> #}
+                    {{ form_end(form) }}
+                </div> <!--card body-->
+            
+            </div> <!--card content-->
+        </div> <!--card-->
+    </div><!--page content-->
 {% endblock %}

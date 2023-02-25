@@ -93,6 +93,10 @@
               <a href = "{{path('add_host')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div>Create host</div>
+
+              <a href = "{{path('host_show')}}"class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div>Host list</div>
               </a>
 
               <a href = "{{path('app_account_show')}}"class="menu-link menu-toggle">
@@ -100,10 +104,10 @@
                 <div>User account</div>
               </a>  
 
-              {# <a href = "{{path('')}}"class="menu-link menu-toggle">
+              <a href = "{{path('eveRegisShow')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div>Event registration show</div>
-              </a>   #}
+              </a>  
             </li>
             
           </ul>
@@ -176,7 +180,7 @@
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="app_account">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>

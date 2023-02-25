@@ -52,7 +52,7 @@
           <a class="nav-link " style="color:white" href="{{path('app_account')}}"> Account </a>
         </li>
         {% if app.user != null %}
-          {% if  app.user.id == 4 %}
+          {% if app.user.id == 4 %}
             <li class="nav-item active">
               <a class="nav-link " style="color:white" href="{{path('adminPage')}}"> Admin Page </a>
             </li>
@@ -152,12 +152,11 @@
         </div>
       <br>
       {% endif %}
-      {{ a.eventDetail }}
-      <br>
-      <button class="btn btn-outline-success">
-        <a href = "{{ path('event_register') }}"> Register </a>
-      </button>
-    </div>
+    {{ a.eventDetail }}
+    <br>
+    <button class="btn btn-outline-success">
+        <a href = "{{path('event_register',{'id':a.id})}}"> Register </a>
+    </button>
   </div>
 {% endfor %}
 
