@@ -90,15 +90,8 @@ class AccountController extends AbstractController
             
             if($c->getPassword()===null)
             {
-                $c->setPassword(new \string($userPasswordHasher -> hashPassword(
-                    $user))
-                );
+                $c->setPassword(new \string());
             }
-            // $user -> setPassword(
-            //     $userPasswordHasher -> hashPassword(
-            //         $user, $form->get('password')->getData()
-            //     )
-            // );
             $this->repo->save($c,true);
             return $this->redirectToRoute('app_account_show', [], Response::HTTP_SEE_OTHER);
         }
