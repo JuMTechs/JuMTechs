@@ -14,8 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-
-
 class AccountDetailController extends AbstractController
 {
     
@@ -25,16 +23,16 @@ class AccountDetailController extends AbstractController
       $this->repo = $repo;
    }
    
-    /**
-     * @Route("/accountDetailShow", name="accDetail_show")
-     */
-    public function readAllAction(): Response
-    {
-        $accountDetail = $this->repo->findAll();
-        return $this->render('accountDetail/index.html.twig', [
-            'events'=>$accountDetail
-        ]);
-    }
+    // /**
+    //  * @Route("/accountDetailShow", name="accDetailShow")
+    //  */
+    // public function readAllAction(): Response
+    // {
+    //     $accountDetail = $this->repo->findAll();
+    //     return $this->render('account_detail/index.html.twig', [
+    //         'events'=>$accountDetail
+    //     ]);
+    // }
 
     //  /**
     //  * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
@@ -47,7 +45,7 @@ class AccountDetailController extends AbstractController
     // }
     
      /**
-     * @Route("/add", name="accountDetailCreate")
+     * @Route("/addAccDetail", name="accDetailCreate")
      */
     public function createAction(Request $req, SluggerInterface $slugger): Response
     {
@@ -80,28 +78,34 @@ class AccountDetailController extends AbstractController
     }
 
      /**
-     * @Route("/edit/{id}", name="event_edit",requirements={"id"="\d+"})
+     * @Route("/AccDetailEdit/{id}", name="AccDetailEdit",requirements={"id"="\d+"})
      */
-    public function editAction(Request $req, Event $c, SluggerInterface $slugger): Response
+    public function editAction(Request $req, AccountDetail $c, SluggerInterface $slugger): Response
     {
         
-        $form = $this->createForm(EventType::class, $c);   
+        $form = $this->createForm(AccountDetailType::class, $c);   
 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
 
-            if($c->getCreated()===null){
-                $c->setCreated(new \DateTime());
+            if($c->getStatus()===null)
+            {
+                $c->setStatus(new \string());
+            }
+            if($c->getBirthday()===null)
+            {
+                $c->setBirthday(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();
-            if ($imgFile) {
+            if ($imgFile) 
+            {
                 $newFilename = $this->uploadImage($imgFile,$slugger);
-                $c->setEventImage($newFilename);
+                $c->setImage($newFilename);
             }
             $this->repo->save($c,true);
-            return $this->redirectToRoute('event_show', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('accDetailShow', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render("event/form.html.twig",[
+        return $this->render("account_detail/index.html.twig",[
             'form' => $form->createView()
         ]);
     }
@@ -122,13 +126,13 @@ class AccountDetailController extends AbstractController
     }
 
     /**
-     * @Route("/delete/{id}",name="event_delete",requirements={"id"="\d+"})
+     * @Route("/AccDetailDelete/{id}",name="AccDetailDelete",requirements={"id"="\d+"})
      */
     
-    public function deleteAction(Request $request, Event $c): Response
+    public function deleteAction(Request $request, AccountDetail $c): Response
     {
         $this->repo->remove($c,true);
-        return $this->redirectToRoute('event_show', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('accDetailShow', [], Response::HTTP_SEE_OTHER);
     }
 
 }

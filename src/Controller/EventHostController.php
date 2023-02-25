@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\EventHostInfo;
 use App\Form\HostType;
 use App\Repository\EventHostInfoRepository;
+use App\Repository\EventRepository;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,16 +28,17 @@ class EventHostController extends AbstractController
     /**
      * @Route("/", name="host_show")
      */
-    public function readAllAction(): Response
+    public function readAllAction(EventRepository $repoeve): Response
     {
         $host = $this->repo->findAll();
+        // $event = $this->repoeve->findby(host.Id);
         return $this->render('host/show.html.twig', [
             'host'=>$host
         ]);
     }
 
     /**
-     * @Route("/add", name="add_host")
+     * @Route("/addHost", name="add_host")
      */
     public function createAction(Request $req, SluggerInterface $slugger): Response
     {
@@ -73,7 +76,7 @@ class EventHostController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="host_edit",requirements={"id"="\d+"})
+     * @Route("/hostEdit/{id}", name="hostEdit",requirements={"id"="\d+"})
      */
     public function editAction(Request $req, EventHostInfo $c, SluggerInterface $slugger): Response
     {
@@ -88,7 +91,7 @@ class EventHostController extends AbstractController
                 $c->setImage($newFilename);
             }
             $this->repo->save($c,true);
-            return $this->redirectToRoute('adminPage', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('host_show', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render("host/index.html.twig",[
             'form' => $form->createView()
@@ -96,7 +99,7 @@ class EventHostController extends AbstractController
     }
 
      /**
-     * @Route("/delete/{id}",name="event_delete",requirements={"id"="\d+"})
+     * @Route("/hostDelete/{id}",name="hostDelete",requirements={"id"="\d+"})
      */
     
      public function deleteAction(Request $request, EventHostInfo $c): Response

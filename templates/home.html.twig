@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}Welcome our shop!{% endblock %}</title>
+    <title>{% block title %} EVENT MANAGEMENT {% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -38,8 +38,10 @@
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-sm-0" href="#">
         <img
-          src="https://talent2win.com/wp-content/uploads/2021/09/LogoDefault.png"
+          class="rounded-circle"
+          src="{{asset('uploads/HomeBG.jpg')}}"
           height="20"
+          width="20"
           alt="Logo"
           loading="lazy" />
       </a>
@@ -66,7 +68,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
 
-      {% if app.user == null  %}
+      {% if app.user == null %}
       <a class="nav-link me-3" href="{{path('app_login')}}">
         <i class="fas fa-sign-in-alt"></i>
       </a>
@@ -96,9 +98,135 @@
  <!--Main layout-->
 <main>
 
-<div class = "container">
-  <img class = "card-img" src="{{asset('uploads/HomeBG.jpg')}}">
-  <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
+{# <div class = "container">
+  <div id="home">
+  <div class = "landing-text">
+    <h1>TEXT</h1>
+    <h3>aaaaaaaaaa</h3>
+    <a href="#" class = "btn btn-default btn-lg"> GET STARTED </a>
+  </div>
+</div>
+
+<div class = "padding">
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-sm-6 text-center">
+        <img src="{{asset('uploads/HomeBG.jpg')}}" width = "500px" height = "200px" >
+      </div>
+      <div class = "col-sm-6 text-center">
+        <h2> aaaaaaaaaaaaa </h2>
+        <p class = "lead">
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        </p>
+        <p class = "lead">
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        </p>
+      </div>
+    </div>
+  </div>
+</div> #}
+
+<div class = "overflow-hidden pt-32 pb-40">
+  <div class = "container">
+    <div class = "row g-16">
+
+      <div class = "col-12 col-md-5 col-xl-6">
+        <h4 class = "fs-16 fw-medium text-secondary-light mb-5"> aaa </h4>
+        <h2 class = "fs-6 text-dark mb-14"> aaa <h2>
+      
+          <div class = "row mb-20 g-5">
+            <div class = "col-auto">
+              <button class = "btn btn-light px-6 py-4 w-100">
+                <span class = "fs-18 fw-medium mb-0"> aaaaaaaaaaaaaaaaa </span>
+              </button>
+            </div>
+
+            <div class = "col-auto">
+              <button class = "btn btn-outline-info px-6 py-3 w-100">
+                <span class = "fs-18 fw-medium text-dark mb-0"> GET STARTED </span>
+              </button>  
+            </div>
+          </div>    
+
+          <div class = "mw-md-md">
+            <div class = "row g-6">
+              <div class = "col-auto">
+                <img class = "img-fluid rounded" src="{{asset('uploads/HomeBG.jpg')}}">
+              </div>
+              <div class = "col">
+                <p class = "text-light-dark mb-3"> aaa </p>
+                <h3 class = "fs-18 fw-medium text-dark mb-0"> aaa </h3>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+      <div class = "col-12 col-md-7 col-xl-6">
+        <div class = "row mb-6">
+          <div class = "col-12">
+            <div class = "d-flex justify-content-center">
+              <div class = "d-inline-block w-100 p-3 bg-white">
+                <div class = "row g-3">
+                  <div class = "col-auto">
+                    <img class = "rounded-circle" src="{{asset('uploads/Home.jpg')}}" height="20" width="20" alt="Logo" loading="lazy">
+                  </div>
+                  <div class = "col">
+                    <h3 class = "fs-18 fw-medium mb-0"> ... </h3>
+                    <p class = "fs-20 text-dark mb-2"> ... </p>
+                    <span class = "badge bg-light-light text-dark fw-medium"> 
+                      <div class = "d-flex align-items-center">
+                        <svg class = "me-1" height="5" width="5">
+                          <path> ... </path>
+                          <path> ... </paht>
+                          <p class = "mb-0"> ... </p>
+                        </svg>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class = "col-12 col-md-7 col-xl-6">
+        <div class = "row mb-6">
+          <div class = "col-12">
+            <div class = "d-flex justify-content-center">
+              <div class = "d-inline-block w-100 p-3 bg-white">
+                <div class = "row g-3">
+                  <div class = "col-auto">
+                    <img class = "rounded-circle" src="{{asset('uploads/HomeBG.jpg')}}" height="20" width="20" alt="Logo" loading="lazy">
+                  </div>
+                  <div class = "col">
+                    <h3 class = "fs-18 fw-medium mb-0"> ... </h3>
+                    <p class = "fs-20 text-dark mb-2"> ... </p>
+                    <span class = "badge bg-light-light text-dark fw-medium"> 
+                      <div class = "d-flex align-items-center">
+                        <svg class = "me-1" height="5" width="5">
+                          <path> ... </path>
+                          <path> ... </paht>
+                          <p class = "mb-0"> ... </p>
+                        </svg>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
   <!-- Container wrapper -->
   <div class="container-fluid">
 
@@ -131,34 +259,36 @@
       </form>
 
     </div>
+
   </div>
   <!-- Container wrapper -->
 </nav>
 
-{% for a in events %}
-  <div class = "d-inline-block mx-2 my-2">
-    {{ a.eventName }}
-    <br>
-    {{ a.eventStartDay|date("m/d/Y") }}
-    <br>
-    {{ a.eventEndDay|date("m/d/Y") }}
-    <br>
-    {% if a.eventImage != null %}
-      {% set image = a.eventImage %}
-        <div class="container d-flex">
-        <img src="{{asset('uploads/'~image)}}" width = "30%" height = "30%"/>
+<div class = "padding">
+  <div class = "container">
+    <div class = "row">
+      {% for a in events %}
+        <div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 my-4"
+          {{ a.eventName }}
+          <br>
+          {{ a.eventStartDay|date("m/d/Y") }}
+          <br>
+          {{ a.eventEndDay|date("m/d/Y") }}
+          <br>
+          {% if a.eventImage != null %}
+            {% set image = a.eventImage %}
+            <img src="{{asset('uploads/'~image)}}" width = "40%" height = "40%"/>
+          {% endif %}
+          <br>
+          {{ a.eventDetail }}
+          <br>
+          <button class="btn btn-outline-success">
+              <a href = "{{path('event_register',{'id':a.id})}}"> REGIST HERE </a>
+          </button>
         </div>
-      <br>
-      {% endif %}
-    {{ a.eventDetail }}
-    <br>
-    <button class="btn btn-outline-success">
-        <a href = "{{path('event_register',{'id':a.id})}}"> Register </a>
-    </button>
+      {% endfor %}
+    </div>
   </div>
-{% endfor %}
-
-<!-- Navbar -->
 </div>
 
 <div class="container">

@@ -8,6 +8,7 @@ use App\Form\EventRegisType;
 use App\Repository\EventRegistrationRepository;
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,4 +59,59 @@ class EventRegisterController extends AbstractController
             'show' => $show
         ]);
     }
+
+    /**
+     * @Route("/eveRegisEdit/{id}", name="eveRegisEdit",requirements={"id"="\d+"})
+     */
+    public function editAction(Request $req, EventRegistration $eveRegis, SluggerInterface $slugger): Response
+    {
+        
+        $form = $this->createForm(EventRegisType::class, $eveRegis);   
+
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+
+            if($eveRegis->getPhonenumber()===null)
+            {
+                $eveRegis->setPhonenumber(new \string());
+            }
+
+            if($eveRegis->getComment()===null)
+            {
+                $eveRegis->setComment(new \string());
+            }
+    
+            $this->repo->save($eveRegis,true);
+            return $this->redirectToRoute('eveRegisShow', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("event_register/index.html.twig",[
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
+        $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $slugger->slug($originalFilename);
+        $newFilename = $safeFilename.'-'.uniqid().'.'.$imgFile->guessExtension();
+        try {
+            $imgFile->move(
+                $this->getParameter('image_dir'),
+                $newFilename
+            );
+        } catch (FileException $e) {
+            echo $e;
+        }
+        return $newFilename;
+    }
+
+    /**
+     * @Route("/eveRegisDelete/{id}",name="eveRegisDelete",requirements={"id"="\d+"})
+     */
+    
+    public function deleteAction(Request $request, EventRegistration $eveRegis): Response
+    {
+        $this->repo->remove($eveRegis,true);
+        return $this->redirectToRoute('eventRegisShow', [], Response::HTTP_SEE_OTHER);
+    }
+
 }
