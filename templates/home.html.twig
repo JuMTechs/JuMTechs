@@ -77,7 +77,7 @@
         Register
       </a>
       {% else %}
-    <a id="welc" class="nav-link me-3" href="#">
+      <a id="welc" class="nav-link me-3" href="#">
         Nice to meet you, {{app.user.name}}
       </a>
       <a class="nav-link me-3" href="{{ path ('app_logout') }} ">
@@ -182,8 +182,8 @@
               {% set image = a.eventImage %}
               <img src="{{asset('uploads/'~image)}}" width = "245px" height = "245px"/>
             {% else %}
-              <img scr="{{asset('uploads/no-image.jpg')}}" width = "245px" height = "245px" />  
-  {% endif %}
+              <img scr="{{asset('uploads/no-image.jpg')}}" width = "245px" height = "245px" />
+            {% endif %}
             <br>
             {{ a.eventDetail }}
             <br>

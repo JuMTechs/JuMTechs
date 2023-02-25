@@ -46,8 +46,8 @@ class Event
   
     public function __construct()
     {
-        $this->eventRegistrations = new ArrayCollection();
-        $this->event = new ArrayCollection();
+         $this->eventRegistrations = new ArrayCollection();
+        // $this->event = new ArrayCollection();
     }
 
     public function getId(): ?int

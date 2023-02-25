@@ -31,19 +31,19 @@ class EventController extends AbstractController
     {
         $event = $this->repo->findAll();
         return $this->render('event/index.html.twig', [
-            'events'=>$event
+            'event'=>$event
         ]);
     }
 
-    //  /**
-    //  * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
-    //  */
-    // public function showAction(Event $e): Response
-    // {
-    //     return $this->render('event/index.html.twig', [
-    //         'e'=>$e
-    //     ]);
-    // }
+     /**
+     * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
+     */
+    public function showAction(Event $e): Response
+    {
+        return $this->render('event/index.html.twig', [
+            'e'=>$e
+        ]);
+    }
 
      /**
      * @Route("/add", name="event_create")
@@ -55,7 +55,7 @@ class EventController extends AbstractController
 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
-            if($e->getCreated()===null){
+            if( $e->getCreated()===null ){
                 $e->setCreated(new \DateTime());
             }
             $imgFile = $form->get('file')->getData();

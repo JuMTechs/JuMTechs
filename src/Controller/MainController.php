@@ -22,12 +22,11 @@ class MainController extends AbstractController
     {
         $event = $this->repo->findAll();
         $user = $this->getUser();
-            if( isset($user))
+            if( isset($user) )
             {
-                $name = $user->getName();
-                $id = $user->getID();
+
                 return $this->render('home.html.twig', [
-                    'events'=>$event,'name'=>$name,'id'=>$id
+                    'events'=>$event
                 ]);
             }
             else
@@ -43,16 +42,8 @@ class MainController extends AbstractController
     public function adminPageAction(): Response
     { 
         $user = $this->getUser();
-        if( isset($user))
-        {
-            $name = $user->getName();
             return $this->render('admin.html.twig', [
-                'name'=>$name
+                'user'=>$user
             ]);
-        }
-        else
-        {
-            return $this->render('admin.html.twig');
-        }      
     }
 }

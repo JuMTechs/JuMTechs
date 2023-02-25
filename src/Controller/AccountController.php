@@ -21,6 +21,7 @@ class AccountController extends AbstractController
 {
 
     private UserRepository $repo;
+    
     public function __construct(UserRepository $repo)
    {
       $this->repo = $repo;
@@ -31,13 +32,11 @@ class AccountController extends AbstractController
      */
     public function AccountAction(): Response
     {
-        $user = $this->getUser();//get logined user 
-        // $uid = $user->getId();
-        $userId = $user->getId();
+        $user = $this->getUser();
         $userName = $user->getName();
+        $userId = $user->getId();
         $userEmail = $user->getEmail();
 
-        // return $this->json($uid);
         return $this->render('account/index.html.twig', [
             'userId' => $userId,
             'userName' => $userName,
@@ -46,11 +45,11 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/accountShow", name="app_account_show")
+     * @Route("/show", name="app_account_show")
      */
     public function AccountShowAction(UserRepository $repo): Response
     {
-        $user = $this->getUser();//get logined user 
+        $user = $this->getUser();
         $userName = $user->getName();
         $account = $repo->findUserAccount('USER');
         $data = [];
@@ -61,11 +60,10 @@ class AccountController extends AbstractController
                 'name'=>$a['name']
             ];
         }
-        // return $this->json($data);
-        return $this->render('account/show.html.twig', [
-            'account' => $data,
-            'name' => $userName 
-        ]);
+            // return $this->json($data);
+            return $this->render('account/show.html.twig', [
+                'account' => $data, 'name' => $userName
+            ]);
     }
 
      /**

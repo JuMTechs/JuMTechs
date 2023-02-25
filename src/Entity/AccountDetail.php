@@ -14,7 +14,7 @@ class AccountDetail
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'accountDetail', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'accountDetail')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

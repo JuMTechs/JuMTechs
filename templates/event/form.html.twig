@@ -1,11 +1,8 @@
 {% extends "admin.html.twig" %}
 {% block title %}
-    Admin Page - Event
+    Admin Page - Event Add
 {% endblock %}
 {% block body %}
-    <div className="page-heading pb-2 mt-4 mb-2 ">
-        <h3>Manager</h3> <a href="{{path('event_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
-    </div>
     <div class="page-content mt-4">
         <div class="card">
             <div class="card-content">
@@ -14,45 +11,27 @@
                     {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
                         <div class="form-body">
                             <div class="row">
-                            {# <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="contact-info-vertical">Event ID</label>
-                                        {{ form_widget(form., {'attr':{'placeholder':'eventId'}}) }}
-                                    </div>
-                                </div> #}
-
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="form-group">
                                         <label for="first-name-vertical">Event Name</label>
-                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'eventName'}}) }}
-                                        
-                                        {# <input type="text" id="pname" class="form-control"
-                                            name="Product_Name" placeholder="Product Name"
-                                            value =""> #}
+                                        {{ form_widget(form.eventName, {'attr':{'placeholder':'Event name'}}) }}
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event start date</label>
-                                        {{ form_widget(form.eventStartDay, {'attr':{'placeholder':'eve_start_day'}}) }}
+                                        {{ form_widget(form.eventStartDay, {'attr':{'placeholder':'Event start day'}}) }}
                                     </div>
                                 </div>
 
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event end date</label>
-                                        {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'eve_end_day'}}) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-vertical">Event create day</label>
-                                        {{ form_widget(form.created, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
+                                        {{ form_widget(form.eventEndDay, {'attr':{'placeholder':'Even end day'}}) }}
                                     </div>
                                 </div>
                                 
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="form-group">
                                         <label for="contact-info-vertical">Event detail</label>
                                         {{ form_widget(form.eventDetail, {'attr':{'placeholder':'Event detail'}}) }}
@@ -66,10 +45,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="form-group">
-                                        <label for="image-vertical"></label>
-                                        
+                                        <label for="image-vertical"> Any Image for the event? </label>
                                         {{ form_widget(form.file) }}
                                     </div>
                                 </div>
@@ -85,8 +63,15 @@
                                         class="w-25 shadow p-3 mb-5 bg-body rounded" />
                                         {% endif %}
                                     </div>
+
+                                <div class="col-12 my-1">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Event create day</label>
+                                        {{ form_widget(form.created)}}
+                                    </div>
+                                </div>
                                     
-                                <div class="col-12 d-flex justify-content-end pt-2">
+                                <div class="col-12 my-1 d-flex justify-content-end pt-2">
                                 
                                     {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
                                     <button type="reset"
