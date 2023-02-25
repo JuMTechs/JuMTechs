@@ -115,7 +115,7 @@
     <br>
     <div class = "container">
       <div class = "col-auto">
-        <button class = "btn btn-light px-6 py-4 w-100">
+        <button class = "btn btn-white px-6 py-4 w-20">
           <span id = "welc" class = "fs-18 fw-medium mb-0"> WELCOME TO OUR WEBSITE </span>
         </button>
       </div>
@@ -124,7 +124,7 @@
 
       <div class = "col-auto" >
         <a href = "#C1">
-        <button class = "btn btn-outline-info px-3 py-3 w-100">
+        <button class = "btn btn-outline-info px-3 py-3 w-10">
           <span class = "fs-18 fw-medium text-white mb-0"> GET STARTED </span>
         </button>  
         </a>
@@ -177,7 +177,7 @@
   <div class = "container">
     <div class = "row">
       {% for a in events %}
-        <div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 my-4"
+        <div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 my-4">
           {{ a.eventName }}
           <br>
           {{ a.eventStartDay|date("m/d/Y") }}
@@ -207,7 +207,7 @@
   <div class="container-fluid">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand"> RECENT EVENT </a>
+    <a class="navbar-brand"> TODAY DATETIME </a>
 
     <!-- Toggle button -->
     <button 
@@ -255,8 +255,9 @@
 </main>
  <!--Main layout-->
 
-
 {% endblock %}
+
+</body>
 
 <footer class="text-center text-white mt-4" style="background-color: black">
   
@@ -329,6 +330,6 @@
     © Copyright 2023
   </div>
   <!-- Copyright -->
-</footer>
-</body>
+</footer> 
+
 </html>

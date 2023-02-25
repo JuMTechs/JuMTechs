@@ -100,9 +100,122 @@ td:hover{
 .card {
  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.footer-cta {
+
+/* .footer-cta {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+} */
+
+footer
+{
+    background-color: black;
+    padding: 60px 10px;
+    position: relative;
+    margin-top: 20px;
+    border-top: 1px solid yellow;
 }
+
+.Container-footer
+{
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    margin: 10px auto;
+}
+
+.Logo-footer-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Logo-footer
+{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.Logo-footer-container span
+{
+    color: white;
+    font-weight: 400;
+    margin: 10px;
+    font-size: 0.8rem;
+}
+
+.Social-footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Social-footer a
+{
+    margin: 0px 6px; 
+    border-radius: 50%;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Social-footer a:hover
+{
+    background-color: lightgray;
+    color: whitesmoke;
+    transition: all ease 0.3s;
+}
+
+.Menu-footer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Menu-footer-box
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 30px;
+}
+
+.Menu-footer-box strong
+{
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.Menu-footer-box ul li a, .Menu-footer-box ul li
+{
+    color: white;
+    font-size: 0.9rem;
+    margin: 5px 0px;
+}
+
+.Menu-footer-box ul li a:hover
+{
+    color: gray;
+    transition: all ease 0.4s;
+}
+
 .price {
   color: #263238;
   font-size: 24px;
