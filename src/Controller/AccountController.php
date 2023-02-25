@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -68,16 +69,26 @@ class AccountController extends AbstractController
      /**
      * @Route("/edit/{id}", name="account_edit",requirements={"id"="\d+"})
      */
-    public function editAction(Request $req, User $c,SluggerInterface $slugger): Response
+    public function editAction(Request $req, User $c,SluggerInterface $slugger, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        
+        $user = $this -> getUser();
         $form = $this->createForm(UserType::class, $c);   
 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
 
-            if($c->getEmail()===null){
+            if($c->getEmail()===null)
+            {
                 $c->setEmail(new \string());
+            }
+            if($c->getName()===null)
+            {
+                $c->setName(new \string());
+            }
+            
+            if($c->getPassword()===null)
+            {
+                $c->setPassword(new \string());
             }
             $this->repo->save($c,true);
             return $this->redirectToRoute('app_account_show', [], Response::HTTP_SEE_OTHER);

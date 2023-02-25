@@ -8,6 +8,7 @@ use App\Form\EventRegisType;
 use App\Repository\EventRegistrationRepository;
 use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -87,14 +88,30 @@ class EventRegisterController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
+        $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $slugger->slug($originalFilename);
+        $newFilename = $safeFilename.'-'.uniqid().'.'.$imgFile->guessExtension();
+        try {
+            $imgFile->move(
+                $this->getParameter('image_dir'),
+                $newFilename
+            );
+        } catch (FileException $e) {
+            echo $e;
+        }
+        return $newFilename;
+    }
+
     /**
-    * @Route("/eveRegisDelete/{id}",name="eveRegisDelete",requirements={"id"="\d+"})
-    */
+     * @Route("/eveRegisDelete/{id}",name="eveRegisDelete",requirements={"id"="\d+"})
+     */
     
     public function deleteAction(Request $request, EventRegistration $eveRegis): Response
     {
-         $this->repo->remove($eveRegis,true);
+        $this->repo->remove($eveRegis,true);
         return $this->redirectToRoute('eventRegisShow', [], Response::HTTP_SEE_OTHER);
     }
- 
+
 }

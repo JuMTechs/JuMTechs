@@ -1,11 +1,10 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello EventController!{% endblock %}
+{% block title %} Admin Page - Event List{% endblock %}
 
 {% block body %}
     <div className="page-heading pb-2 mt-4 mb-2 ">
-        <h3>Manager</h3> <a href="{{path('event_create')}}">
-        <button type="button" class="btn btn-outline-primary">Insert</button></a>
+        <h3>Event Manager</h3>
     </div>
     <div class="page-content">
     <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -39,8 +38,8 @@
                         <td>{{ c.created|date("m/d/Y")}}</td>
                         <td> 
                             <a href="{{path('event_edit',{'id':c.id})}}"> Edit </a>
-                        </td>
-                        <td>
+                        
+                
                             <a href="{{path('event_delete',{'id':c.id})}}">Delete</a>
                         </td>
                     </tr>

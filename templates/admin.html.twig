@@ -53,12 +53,14 @@
                 <a href="index.html" class="app-brand-link">
                     <a class="navbar-brand mt-2 mt-sm-0 m-auto d-block" href="#">
                         <img
-                        src="https://talent2win.com/wp-content/uploads/2021/09/LogoDefault.png"
-                        height="50px"
-                        alt="Logo"
-                        loading="lazy"
-                        />
-                  </a>
+                          class="rounded-circle"
+                          src="{{asset('uploads/logo1.jpg')}}"
+                          height="50px"
+                          width="50px"
+                          wid
+                          alt="Logo"
+                          loading="lazy" />
+                    </a>
                 <a href="" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
                     <i class="bx bx-chevron-left bx-sm align-middle"></i>
                 </a>
@@ -79,20 +81,26 @@
             </li>
             <li class="menu-item">
 
-            <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-dock-top"></i>
-              <div>Create event</div>
-            </a>
-
-            <li class = "menu-item">
-              <a href = "{{path('event_show')}}" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                  <div>Event list</div>
+              <a href = "{{path('event_create')}}"class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div>Create event</div>
               </a>
+
+              <a href = "{{path('event_show')}}" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div>Event list</div>
+              </a>
+
+              
+              <a href = "{{path('eveRegisShow')}}"class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div>Event registration show</div>
+              </a>  
 
               <a href = "{{path('add_host')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div>Create host</div>
+              </a>
 
               <a href = "{{path('host_show')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -102,12 +110,7 @@
               <a href = "{{path('app_account_show')}}"class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div>User account</div>
-              </a>  
-
-              <a href = "{{path('eveRegisShow')}}"class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div>Event registration show</div>
-              </a>  
+              </a>
             </li>
             
           </ul>
@@ -150,6 +153,7 @@
                     <div class="avatar avatar-online">
                         
                         <i class="fas fa-user-circle fa-2x"></i>
+
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">

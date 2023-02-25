@@ -32,7 +32,9 @@ class EventType extends AbstractType{
         // cach lay du lieu bang EventHostInfo -- choice_label -> host_id
 
         ->add('host', EntityType::class, ['class'=>EventHostInfo::class, 'choice_label'=>'id'])
+
         ->add('created',DateType::class,['data'=>new \DateTime(),'disabled'=>true])
+        
         ->add('save',SubmitType::class,[
             'label' => "Confirm"
         ]);

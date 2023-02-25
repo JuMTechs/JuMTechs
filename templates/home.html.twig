@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}Welcome our shop!{% endblock %}</title>
+    <title>{% block title %} EVENT MANAGEMENT {% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -38,8 +38,10 @@
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-sm-0" href="#">
         <img
-          src="https://talent2win.com/wp-content/uploads/2021/09/LogoDefault.png"
-          height="20"
+          class="rounded-circle"
+          src="{{asset('uploads/logo1.jpg')}}"
+          height="50px"
+          width="50px"
           alt="Logo"
           loading="lazy" />
       </a>
@@ -67,7 +69,7 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center">
 
-      {% if app.user == null  %}
+      {% if app.user == null %}
       <a class="nav-link me-3" href="{{path('app_login')}}">
         <i class="fas fa-sign-in-alt"></i>
       </a>
@@ -97,9 +99,42 @@
  <!--Main layout-->
 <main>
 
-<div class = "container">
-  <img class = "card-img" src="{{asset('uploads/HomeBG.jpg')}}">
-  <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
+<div class="card">
+  <img class = "card-img" src="{{asset('uploads/c.jpg')}}">
+  <div class="card-img-overlay">
+    {# <p class="card-text text-white"> #}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class = "container">
+      <div class = "col-auto">
+        <button class = "btn btn-light px-6 py-4 w-25">
+          <span id = "welc" class = "fs-18 fw-medium mb-0"> WELCOME TO OUR WEBSITE </span>
+        </button>
+      </div>
+
+      <br>
+
+      <div class = "col-auto" >
+        <a href = "#C1">
+        <button class = "btn btn-outline-info px-3 py-3 w-10">
+          <span class = "fs-18 fw-medium text-white mb-0"> GET STARTED </span>
+        </button>  
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<nav id = "C1" class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
   <!-- Container wrapper -->
   <div class="container-fluid">
 
@@ -132,35 +167,38 @@
       </form>
 
     </div>
+
   </div>
   <!-- Container wrapper -->
 </nav>
 
-{% for a in events %}
-  <div class="container-xxl flex-grow-1 container-p-y">
-    <div class = "d-inline-block mx-2 my-2 border-2 border-color:black ">
-      {{ a.eventName }}
-      <br>
-      {{ a.eventStartDay|date("m/d/Y") }}
-      <br>
-      {{ a.eventEndDay|date("m/d/Y") }}
-      <br>
-      {% if a.eventImage != null %}
-      {% set image = a.eventImage %}
-        <div class="container d-flex">
-        <img src="{{asset('uploads/'~image)}}" width = "30%" height = "30%"/>
+<div class = "padding">
+  <div class = "container row">
+      {% for a in events %}
+        <div class="card col-md-3 col-sm-6 col-xs-12 my-4 mx-4">
+            {{ a.eventName }}
+            <br>
+            {{ a.eventStartDay|date("m/d/Y") }}
+            <br>
+            {{ a.eventEndDay|date("m/d/Y") }}
+            <br>
+            {% if a.eventImage != null %}
+              {% set image = a.eventImage %}
+              <img src="{{asset('uploads/'~image)}}" width = "245px" height = "245px"/>
+            {% else %}
+              <img scr="{{asset('uploads/no-image.jpg')}}" width = "245px" height = "245px" />
+            {% endif %}
+            <br>
+            {{ a.eventDetail }}
+            <br>
+            
+              <button class="btn btn-outline-success">
+                  <a href = "{{path('event_register',{'id':a.id})}}"> REGIST HERE </a>
+              </button>
+            </a>
         </div>
-      <br>
-      {% endif %}
-    {{ a.eventDetail }}
-    <br>
-    <button class="btn btn-outline-success">
-        <a href = "{{path('event_register',{'id':a.id})}}"> Register </a>
-    </button>
+      {% endfor %}
   </div>
-{% endfor %}
-
-<!-- Navbar -->
 </div>
 
 <div class="container">
