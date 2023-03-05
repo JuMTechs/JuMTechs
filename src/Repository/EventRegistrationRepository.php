@@ -39,20 +39,20 @@ class EventRegistrationRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return EventRegistration[] Returns an array of EventRegistration objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return EventRegistration[] Returns an array of EventRegistration objects
+    */
+   public function findEventUserRegis($value): array
+   {
+       return $this->createQueryBuilder('e')
+        ->select('ev.eventName','ev.eventStartDay','ev.eventEndDay','ev.eventDetail','ev.eventImage')
+            ->innerJoin('e.event','ev')
+           ->andWhere('e.user = :val ')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?EventRegistration
 //    {

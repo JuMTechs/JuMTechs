@@ -20,24 +20,19 @@ class EventType extends AbstractType{
             'label' => 'eventImage',
             'required' => false,
             'mapped' =>false
-        ])
+            ])
         ->add('eventImage',HiddenType::class,[
             'required' =>false
-        ])
+            ])
         ->add('eventStartDay')
         ->add('eventEndDay')
         ->add('eventDetail')
-            
-        // cach chua loi convert to string
-        // cach lay du lieu bang EventHostInfo -- choice_label -> host_id
-
         ->add('host', EntityType::class, ['class'=>EventHostInfo::class, 'choice_label'=>'id'])
-
         ->add('created',DateType::class,['data'=>new \DateTime(),'disabled'=>true])
-        
         ->add('save',SubmitType::class,[
             'label' => "Confirm"
-        ]);
+            ])
+        ;
     }
 
     // public function configureOptions(OptionsResolver $resolver)

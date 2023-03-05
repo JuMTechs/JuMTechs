@@ -36,7 +36,7 @@ class EventController extends AbstractController
     }
 
      /**
-     * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
+     * @Route("/event/{id}", name="event_read",requirements={"id"="\d+"})
      */
     public function showAction(Event $e): Response
     {
@@ -72,7 +72,7 @@ class EventController extends AbstractController
     }
 
      /**
-     * @Route("/edit/{id}", name="event_edit",requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="event_edit",requirements={"i  d"="\d+"})
      */
     public function editAction(Request $req, Event $c, SluggerInterface $slugger): Response
     {

@@ -52,6 +52,7 @@ class AccountController extends AbstractController
         $user = $this->getUser();
         $userName = $user->getName();
         $account = $repo->findUserAccount('USER');
+        
         $data = [];
         foreach($account as $a){
             $data[] = [

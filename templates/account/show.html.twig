@@ -26,8 +26,8 @@
                     {% for a in account %}
                         <tr>
                             <td class = "text-black-50">{{a.id}}</td>
+                            <td class = "text-black-50">{{a.name}}</td>                            
                             <td class = "text-black-50">{{a.email}}</td>
-                            <td class = "text-black-50">{{a.name}}</td>
                             {# <td>{{a.roles}}</td> #}
                             <td> 
                                 <a href="{{ path('event_edit',{'id':a.id}) }}">Edit</a>

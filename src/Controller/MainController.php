@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\EventRegistrationRepository;
 use App\Repository\EventRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,23 +18,34 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="homePage")
      */
-    public function readAllAction(): Response
+    public function readAllAction(EventRegistrationRepository $r): Response
     {
         $event = $this->repo->findAll();
         $user = $this->getUser();
-            if( isset($user) )
+        if(isset($user))
+        {
+            $userid = $user->getID();
+            $revent = $r->findEventUserRegis($userid);
+            $data = [];
+            foreach($revent as $a)
             {
-
-                return $this->render('home.html.twig', [
-                    'events'=>$event
-                ]);
+                $data[] = [
+                    'name'=>$a['eventName'],
+                    'startday'=>$a['eventStartDay'],
+                    'endday'=>$a['eventEndDay'],
+                    'detail'=>$a['eventDetail'],
+                    'img'=>$a['eventImage']
+                ];
             }
-            else
-            {
+                // return $this->json($data);
                 return $this->render('home.html.twig', [
-                    'events'=>$event 
+                    'event' => $data, 'events'=> $event, 
                 ]);
-            }
+        }else{
+            return $this->render('home.html.twig', [
+                'events'=> $event,
+            ]);
+        }
     }
     /**
      * @Route("/admin", name="adminPage")

@@ -31,7 +31,7 @@ class EventHostController extends AbstractController
     public function readAllAction(EventRepository $repoeve): Response
     {
         $host = $this->repo->findAll();
-        // $event = $this->repoeve->findby(host.Id);
+
         return $this->render('host/show.html.twig', [
             'host'=>$host
         ]);
@@ -46,9 +46,11 @@ class EventHostController extends AbstractController
         $form = $this->createForm(HostType::class, $e);
 
         $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid())
+        {
             $imgFile = $form->get('file')->getData();
-            if ($imgFile) {
+            if ($imgFile) 
+            {
                 $newFilename = $this->uploadImage($imgFile,$slugger);
                 $e->setImage($newFilename);
             }
@@ -69,7 +71,9 @@ class EventHostController extends AbstractController
                 $this->getParameter('image_dir'),
                 $newFilename
             );
-        } catch (FileException $e) {
+        } 
+        catch (FileException $e) 
+        {
             echo $e;
         }
         return $newFilename;

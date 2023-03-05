@@ -54,7 +54,7 @@
           <a class="nav-link " style="color:white" href="{{path('app_account')}}"> Account </a>
         </li>
         {% if app.user != null %}
-          {% if app.user.id == 4 %}
+          {% if app.user.roles != ["ROLE_USER"] %}
             <li class="nav-item active">
               <a class="nav-link " style="color:white" href="{{path('adminPage')}}"> Admin Page </a>
             </li>
@@ -133,7 +133,7 @@
 
   </div>
 </div>
-
+<div class="container">
 <nav id = "C1" class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -154,91 +154,100 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent2">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        {# <!-- Link -->
-        <li class="nav-item acitve">
-          <a class="nav-link text-white" href="#">All</a>
-        </li> #}
-
       </ul>
-
-      <!-- Search -->
-      <form class="w-auto py-1" style="max-width: 12rem">
-        <input type="search" class="form-control rounded-0" placeholder="Search" aria-label="Search">
-      </form>
-
-    </div>
-
   </div>
-  <!-- Container wrapper -->
 </nav>
-
-<div class = "padding">
-  <div class = "container row">
-      {% for a in events %}
-        <div class="card col-md-3 col-sm-6 col-xs-12 my-4 mx-4">
-            {{ a.eventName }}
-            <br>
-            {{ a.eventStartDay|date("m/d/Y") }}
-            <br>
-            {{ a.eventEndDay|date("m/d/Y") }}
-            <br>
-            {% if a.eventImage != null %}
-              {% set image = a.eventImage %}
-              <img src="{{asset('uploads/'~image)}}" width = "245px" height = "245px"/>
-            {% else %}
-              <img scr="{{asset('uploads/no-image.jpg')}}" width = "245px" height = "245px" />
-            {% endif %}
-            <br>
-            {{ a.eventDetail }}
-            <br>
-            
-              <button class="btn btn-outline-success">
-                  <a href = "{{path('event_register',{'id':a.id})}}"> REGIST HERE </a>
-              </button>
-            </a>
-        </div>
-      {% endfor %}
+  <div class="container-xxl flex-grow-1 container-p-y mx-5"> 
+    <div class = "padding">
+      <div class = "container row">
+          {% for a in events %}
+            <div class="card col-md-3 col-sm-6 col-xs-12 my-4 mx-4">
+                {{ a.eventName }}
+                <br>
+                {{ a.eventStartDay|date("m/d/Y") }}
+                <br>
+                {{ a.eventEndDay|date("m/d/Y") }}
+                <br>
+                {% if a.eventImage != null %}
+                  {% set image = a.eventImage %}
+                  <img src="{{asset('uploads/'~image)}}" width = "100%" height = "100%"/>
+                {% else %}
+                  <img scr="{{asset('uploads/no-image.jpg')}}" width = "100%" height = "100%" />
+                {% endif %}
+                <br>
+                {{ a.eventDetail }}
+                <br>
+                
+                  <button class="btn btn-outline-success">
+                      <a href = "{{path('event_register',{'id':a.id})}}"> REGIST HERE </a>
+                  </button>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="container">
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: grey">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
 
-    <!-- Navbar brand -->
-    <a class="navbar-brand"> RECENT EVENT </a>
+      <!-- Navbar brand -->
+      <a class="navbar-brand"> Registed Event </a>
+      <!-- Toggle button -->
+      <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarSupportedContent2">
+        <i class="fas fa-bars"></i>
+      </button>
 
-    <!-- Toggle button -->
-    <button 
-       class="navbar-toggler" 
-       type="button" 
-       data-bs-toggle="collapse" 
-       data-bs-target="#navbarSupportedContent2">
-      <i class="fas fa-bars"></i>
-    </button>
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {# <!-- Link -->
+          <li class="nav-item acitve">
+            <a class="nav-link text-white" href="#">All</a>
+          </li> #}
 
-        {# <!-- Link -->
-        <li class="nav-item acitve">
-          <a class="nav-link text-white" href="#">All</a>
-        </li> #}
-
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  <!-- Container wrapper -->
-</nav>
- 
+    <!-- Container wrapper -->
+  </nav>
 <!-- Navbar -->
+{% if app.user != null %}
+ <div class = "padding">
+      <div class = "container row">
+              {% for e in event %}
+                  <div class="card col-md-3 col-sm-6 col-xs-12 my-4 mx-4">
+                      {{ e.name }}
+                      <br>
+                      {{ e.startday|date("m/d/Y") }}
+                      <br>
+                      {# {{ e.endday|date("m/d/Y") }} #}
+                      <br>
+                      {% if e.img != null %}
+                        {% set image = e.img %}
+                        <img src="{{asset('uploads/'~image)}}"/>
+                      {% else %}
+                        <img scr="{{asset('uploads/no-image.jpg')}}" />
+                      {% endif %}
+                      <br>
+                      {{ e.detail }}
+                  </div>
+          {% endfor %}
+        </div>
+      </div>
+</div>
+{% endif %}
 
-<!-- display date start -->
-<div class="calender">
-  <div class="container-xxl flex-grow-1 container-p-y">
+ <!-- display date start -->
+  <div class="container-xxl flex-grow-1 container-p-y"> 
     <div class="month mx-auto my-auto">
       <div id="current-time">
         <script>
@@ -249,8 +258,8 @@
           document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
         </script>
       </div>
+    </div>
   </div>
-</div>
 <!-- display date end-->
    
 </main>
