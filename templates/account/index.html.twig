@@ -1,4 +1,4 @@
-{% extends 'admin.html.twig' %}
+{% extends 'home.html.twig' %}
 
 {% block title %}Account update!{% endblock %}
 
@@ -19,17 +19,17 @@
 
     <div class="card">
       <div class="container mb-3">
-        <div class="table-responsive text-dark">
+        <div class="table-responsive">
           <table class="table table-hover">
             <thead>
-              <th> Id </th>
-              <th> Name </th>
-              <th> Email </th>
+              <th class=" text-black-50"> Id </th>
+              <th class=" text-black-50"> Name </th>
+              <th class=" text-black-50"> Email </th>
             </thead>
             <tbody>
-              <th>{{ userId }}</th>
-              <th>{{ userName }}</th>
-              <th>{{ userEmail }}</th>
+              <th class=" text-black-50">{{ userId }}</th>
+              <th class=" text-black-50">{{ userName }}</th>
+              <th class=" text-black-50">{{ userEmail }}</th>
             </tbody>
           </table>
         </div>
