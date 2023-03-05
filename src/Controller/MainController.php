@@ -21,7 +21,7 @@ class MainController extends AbstractController
     public function readAllAction(): Response
     {
         $event = $this->repo->findAll();
-        $user = $this->getUser();
+        $user = $this->getUser();                     
             if( isset($user) )
             {
 
