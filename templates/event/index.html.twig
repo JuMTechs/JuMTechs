@@ -38,8 +38,6 @@
                         <td>{{ c.created|date("m/d/Y")}}</td>
                         <td> 
                             <a href="{{path('event_edit',{'id':c.id})}}"> Edit </a>
-                        
-                
                             <a href="{{path('event_delete',{'id':c.id})}}">Delete</a>
                         </td>
                     </tr>
@@ -49,5 +47,5 @@
         </div>
     </div>
     </div>
-    </div>
+</div>
 {% endblock %}

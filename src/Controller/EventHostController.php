@@ -6,7 +6,6 @@ use App\Entity\EventHostInfo;
 use App\Form\HostType;
 use App\Repository\EventHostInfoRepository;
 use App\Repository\EventRepository;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;

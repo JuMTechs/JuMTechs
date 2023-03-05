@@ -14,13 +14,10 @@ class EventRegisType extends AbstractType{
         $builder
         ->add('phonenumber')
         ->add('comment')
-        
         ->add('event', HiddenType::class, ['data'=>null])
-
         ->add('user',HiddenType::class, ['data'=>null])
-
         ->add('save',SubmitType::class,[
             'label' => "Confirm"
-        ]);
+            ]);
     }
 }

@@ -6,8 +6,6 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -98,21 +96,7 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-    // public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
-    //     $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
-    //     $safeFilename = $slugger->slug($originalFilename);
-    //     $newFilename = $safeFilename.'-'.uniqid().'.'.$imgFile->guessExtension();
-    //     try {
-    //         $imgFile->move(
-    //             $this->getParameter('image_dir'),
-    //             $newFilename
-    //         );
-    //     } catch (FileException $e) {
-    //         echo $e;
-    //     }
-    //     return $newFilename;
-
+    
     /**
      * @Route("/delete/{id}",name="account_delete",requirements={"id"="\d+"})
      */

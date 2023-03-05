@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AccountDetail;
-use App\Entity\Event;
 use App\Form\AccountDetailType;
-use App\Form\EventType;
 use App\Repository\AccountDetailRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -22,27 +20,6 @@ class AccountDetailController extends AbstractController
    {
       $this->repo = $repo;
    }
-   
-    // /**
-    //  * @Route("/accountDetailShow", name="accDetailShow")
-    //  */
-    // public function readAllAction(): Response
-    // {
-    //     $accountDetail = $this->repo->findAll();
-    //     return $this->render('account_detail/index.html.twig', [
-    //         'events'=>$accountDetail
-    //     ]);
-    // }
-
-    //  /**
-    //  * @Route("/{id}", name="event_read",requirements={"id"="\d+"})
-    //  */
-    // public function showAction(Event $e): Response
-    // {
-    //     return $this->render('event/index.html.twig', [
-    //         'e'=>$e
-    //     ]);
-    // }
     
      /**
      * @Route("/addAccDetail", name="accDetailCreate")

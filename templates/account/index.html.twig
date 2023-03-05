@@ -1,48 +1,48 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello EventController!{% endblock %}
+{% block title %}Account update!{% endblock %}
 
 {% block body %}
 <div class="content-wrapper">
   <div class="container-xxl flex-grow-1 container-p-y">
-          <div class="month mx-auto my-4">
-            <div id="current-time">
-              <script>
-                var curDate = new Date();
-                var curDay = curDate.getDate();
-                var curYear = curDate.getFullYear();
-                var curMonth = curDate.getMonth() + 1;
-                document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
-              </script>
-            </div>
-          </div>
+    <div class="month mx-auto my-4">
+      <div id="current-time">
+        <script>
+          var curDate = new Date();
+          var curDay = curDate.getDate();
+          var curYear = curDate.getFullYear();
+          var curMonth = curDate.getMonth() + 1;
+          document.getElementById('current-time').innerHTML = curDay + "-" + curMonth + "-" + curYear;
+        </script>
+      </div>
+    </div>
 
-          <div class="card">
-            <div class="container mb-3">
-              <div class="table-responsive text-dark">
-                <table class="table table-hover">
-                <thead>
-                  <th> Id </th>
-                  <th> Name </th>
-                  <th> Email </th>
-                </thead>
-                <tbody>
-                  <th>{{ userId }}</th>
-                  <th>{{ userName }}</th>
-                  <th>{{ userEmail }}</th>
-                </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <div class="card">
+      <div class="container mb-3">
+        <div class="table-responsive text-dark">
+          <table class="table table-hover">
+            <thead>
+              <th> Id </th>
+              <th> Name </th>
+              <th> Email </th>
+            </thead>
+            <tbody>
+              <th>{{ userId }}</th>
+              <th>{{ userName }}</th>
+              <th>{{ userEmail }}</th>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
         
-          <div class="text-center my-3">
-            <button class="btn btn-lg btn-primary">
-              <a href = "{{path('accDetailCreate')}}" class = "text-white">
-                Update
-              </a>
-            </button>
-          </div>
+    <div class="text-center my-3">
+      <button class="btn btn-lg btn-primary">
+        <a href = "{{path('accDetailCreate')}}" class = "text-white">
+          Update
+        </a>
+      </button>
+    </div>
   </div>
 </div>
 {% endblock %}

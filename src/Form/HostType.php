@@ -15,25 +15,17 @@ class HostType extends AbstractType{
         ->add('Name')
         ->add('Age')
         ->add('Job')
-
         ->add('file',FileType::class,[
             'label' => 'Image',
             'required' => false,
             'mapped' =>false
-        ])
+            ])
         ->add('Image',HiddenType::class,[
             'required' =>false
-        ])
+            ])
         ->add('save',SubmitType::class,[
             'label' => "Confirm"
-        ])
+            ])
         ;
     }
-
-    // public function configureOptions(OptionsResolver $resolver)
-    // {
-    //     $resolver->setDefaults([
-    //         'data_class'=>Event::class
-    //     ]);
-    // }    
 }
